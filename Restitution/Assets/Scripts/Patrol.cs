@@ -16,7 +16,7 @@ public class Patrol : MonoBehaviour
     void Start()
     {
         guard = GetComponent<NavMeshAgent>();
-        guardAnimator = GetComponent<Animator>();
+        //guardAnimator = GetComponent<Animator>();
 
         guard.destination = waypoints[index].position;
     }
@@ -27,11 +27,11 @@ public class Patrol : MonoBehaviour
         if (moving && Vector3.Distance(transform.position, waypoints[index].position) < 0.1f)
         {
             moving = false;
-            guardAnimator.SetInteger("movement", 0);
+            //guardAnimator.SetInteger("movement", 0);
             StartCoroutine("PatrolNextLocation");
         } else if (moving)
         {
-            guardAnimator.SetInteger("movement", 1);
+            //guardAnimator.SetInteger("movement", 1);
         }
     }
 
@@ -42,8 +42,8 @@ public class Patrol : MonoBehaviour
         {
             index = 0;
         }
+        yield return new WaitForSeconds(Random.Range(1f, 5f));
         guard.destination = waypoints[index].position;
         moving = true;
-        yield return new WaitForSeconds(8f);
     }
 }
