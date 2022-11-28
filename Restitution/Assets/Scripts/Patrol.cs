@@ -16,7 +16,7 @@ public class Patrol : MonoBehaviour
     void Start()
     {
         guard = GetComponent<NavMeshAgent>();
-        //guardAnimator = GetComponent<Animator>();
+        guardAnimator = GetComponent<Animator>();
 
         guard.destination = waypoints[index].position;
     }
