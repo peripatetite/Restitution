@@ -198,7 +198,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2225eb4da23d61942867ea850abf0b52, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.12
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2225eb4da23d61942867ea850abf0b52, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1672,6 +1672,10 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 6e889e2f94315564abe223653a25f335, type: 2}
     - target: {fileID: 5866666021909216657, guid: 508f19dcc4d588246820ded1db4cbdd2, type: 3}
       propertyPath: m_CullingMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 508f19dcc4d588246820ded1db4cbdd2, type: 3}
+      propertyPath: m_ApplyRootMotion
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

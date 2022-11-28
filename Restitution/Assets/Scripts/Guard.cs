@@ -5,14 +5,14 @@ using UnityEngine.AI;
 
 public class Guard : MonoBehaviour
 {
-    private Animator animController;
+    private Animator guardAnimator;
     private NavMeshAgent navAgent;
     private GameObject david;
     // Start is called before the first frame update
     void Start()
     {
         navAgent = GetComponent<NavMeshAgent>();
-        animController = GetComponent<Animator>();
+        guardAnimator = GetComponent<Animator>();
         david = GameObject.Find("David");
     }
 
@@ -30,15 +30,12 @@ public class Guard : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(guardView, direction_from_guard_to_david, out hit, Mathf.Infinity))
             {
-                animController.SetInteger("movement", 2);
+                guardAnimator.SetInteger("movement", 2);
                 //Set the guard's destination to the player's position
-                //navAgent.destination = davidCentroid;
+                navAgent.destination = davidCentroid;
             }
         } else
         {
-            //Set the agent back on the path
-            //navAgent.path = NavMeshPath();
-            animController.SetInteger("movement", 1);
         }
     }
 }
