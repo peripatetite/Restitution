@@ -198,7 +198,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2225eb4da23d61942867ea850abf0b52, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.12
+      value: -0.21
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2225eb4da23d61942867ea850abf0b52, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1685,23 +1685,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 508f19dcc4d588246820ded1db4cbdd2, type: 3}
   m_PrefabInstance: {fileID: 901960632}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &901960634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 901960633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9024c322eb880d449cc3f14b537d8a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waypoints:
-  - {fileID: 1011964815}
-  - {fileID: 1794785718}
-  - {fileID: 1444435075}
-  - {fileID: 512787953}
 --- !u!114 &901960635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1714,6 +1697,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e8a19f6694a41f4d9dc720c30d8a75a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waypoints:
+  - {fileID: 1011964815}
+  - {fileID: 1794785718}
+  - {fileID: 1444435075}
+  - {fileID: 512787953}
 --- !u!195 &901960636
 NavMeshAgent:
   m_ObjectHideFlags: 0
