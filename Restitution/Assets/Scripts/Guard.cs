@@ -7,6 +7,7 @@ public class Guard : MonoBehaviour
 {
     public List<Transform> waypoints;
 
+    private GameObject replay;
     private NavMeshAgent guardAgent;
     private Animator guardAnimator;
     private GameObject david;
@@ -23,6 +24,9 @@ public class Guard : MonoBehaviour
         guardAnimator = GetComponent<Animator>();
         david = GameObject.Find("David");
         characterController = david.GetComponent<CharacterController>();
+
+        replay = GameObject.Find("Play");
+        replay.SetActive(false);
 
         guardAgent.destination = waypoints[index].position;
     }
