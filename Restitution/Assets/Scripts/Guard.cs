@@ -44,11 +44,20 @@ public class Guard : MonoBehaviour
         if (inView && Physics.Raycast(guardView, direction_from_guard_to_david, out hit, Vector3.Distance(transform.position, davidCentroid) + 1)
             && hit.collider.gameObject == david)
         {
-            chasing = true;
-            guardAnimator.SetInteger("movement", 2);
-            //Set the guard's destination to the player's position
-            guardAgent.destination = davidCentroid;
-            guardAgent.speed = 3.5f;
+            //Should we use bounds.center?
+            if (Vector3.Distance(transform.position, characterController.bounds.center) < 1)
+            {
+                replay.SetActive(true);
+                guardAnimator.SetTrigger("capture");
+                guardAgent.speed = 0;
+            } else
+            {
+                chasing = true;
+                guardAnimator.SetInteger("movement", 2);
+                //Set the guard's destination to the player's position
+                guardAgent.destination = davidCentroid;
+                guardAgent.speed = 3.5f;
+            }
         } else
         {
             if (moving && Vector3.Distance(transform.position, waypoints[index].position) < 0.1f || chasing)
