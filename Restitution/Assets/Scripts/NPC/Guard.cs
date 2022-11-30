@@ -41,10 +41,11 @@ public class Guard : MonoBehaviour
         direction_from_guard_to_david.Normalize();
         bool inView = Vector3.Angle(guardDirection, direction_from_guard_to_david) < 60;
         RaycastHit hit;
-        if (inView && Physics.Raycast(guardView, direction_from_guard_to_david, out hit, Vector3.Distance(transform.position, davidCentroid) + 1)
+        if (inView
+            && Physics.Raycast(guardView, direction_from_guard_to_david, out hit, Vector3.Distance(transform.position, davidCentroid) + 1)
             && hit.collider.gameObject == david)
         {
-            //Should we use bounds.center?
+            // We should use bounds.center
             if (Vector3.Distance(transform.position, characterController.bounds.center) < 1)
             {
                 replay.SetActive(true);
