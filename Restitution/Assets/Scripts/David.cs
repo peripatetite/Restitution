@@ -23,43 +23,48 @@ public class David : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
         {
-            if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
+            //Lower the collider
+            //characterController.bounds.center = new Vector3(characterController.bounds.center.x, 0.2f, characterController.bounds.center.y);
+            if (Input.GetKey(KeyCode.W))
             {
                 //Crouch walk forwards
-                Debug.Log(characterController.bounds.center);
                 davidAnimator.SetInteger("movement", 3);
                 velocity = Mathf.Min(velocity + 0.25f, walkingVelocity / 2);
             }
-            else if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-            {
-                //Run
-                davidAnimator.SetInteger("movement", 2);
-                velocity = Mathf.Min(velocity + 1, walkingVelocity * 2);
-            }
             else
             {
-
-                Debug.Log(characterController.bounds.center);
-                //Walk
-                davidAnimator.SetInteger("movement", 1);
-                velocity = Mathf.Min(velocity + 0.5f, walkingVelocity);
+                //Crouch Idle
+                velocity = 0;
+                davidAnimator.SetInteger("movement", 4);
             }
         }
-        else
+        else  
         {
-            velocity = 0;
-            if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
+            //David is standing
+            //characterController.bounds.center = new Vector3(characterController.bounds.center.x, 1, characterController.bounds.center.y);
+            if (Input.GetKey(KeyCode.W))
             {
-                //Crouch Idle
-                davidAnimator.SetInteger("movement", 4);
+                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                {
+                    //Run
+                    davidAnimator.SetInteger("movement", 2);
+                    velocity = Mathf.Min(velocity + 1, walkingVelocity * 2);
+                }
+                else
+                {
+                    //Walk
+                    davidAnimator.SetInteger("movement", 1);
+                    velocity = Mathf.Min(velocity + 0.5f, walkingVelocity);
+                }
             }
             else
             {
                 //Idle
+                velocity = 0;
                 davidAnimator.SetInteger("movement", 0);
-            }
+            }   
         }
 
         //Rotate David right
