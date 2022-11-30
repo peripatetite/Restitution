@@ -516,9 +516,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71e815581369b3c4796c053c580ac876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walking_velocity: 0
+  walkingVelocity: 0
   velocity: 0
-  movement_direction: {x: 0, y: 0, z: 0}
+  movementDirection: {x: 0, y: 0, z: 0}
 --- !u!95 &294058023
 Animator:
   serializedVersion: 4
@@ -4418,7 +4418,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2084836767}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.55, z: 7}
+  m_LocalPosition: {x: 0, y: -2, z: 7}
   m_LocalScale: {x: 3, y: 1, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []

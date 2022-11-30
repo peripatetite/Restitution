@@ -15,9 +15,9 @@ public class David : MonoBehaviour
     {
         davidAnimator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
-        velocity = 0.0f;
+        velocity = 0;
         walkingVelocity = 1.5f;
-        movementDirection = new Vector3(0.0f, 0.0f, 0.0f);
+        movementDirection = new Vector3(0, 0, 0);
     }
 
     // Update is called once per frame
@@ -26,7 +26,7 @@ public class David : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
         {
             //Lower the collider
-            //characterController.bounds.center = new Vector3(characterController.bounds.center.x, 0.2f, characterController.bounds.center.y);
+            characterController.center = new Vector3(characterController.center.x, 0, characterController.center.y);
             if (Input.GetKey(KeyCode.W))
             {
                 //Crouch walk forwards
@@ -43,7 +43,7 @@ public class David : MonoBehaviour
         else  
         {
             //David is standing
-            //characterController.bounds.center = new Vector3(characterController.bounds.center.x, 1, characterController.bounds.center.y);
+            characterController.center = new Vector3(characterController.center.x, 1, characterController.center.y);
             if (Input.GetKey(KeyCode.W))
             {
                 if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
