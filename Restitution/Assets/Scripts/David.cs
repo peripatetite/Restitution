@@ -23,10 +23,11 @@ public class David : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
+        if (Input.GetKey(KeyCode.Space))
         {
             //Lower the collider
-            characterController.center = new Vector3(characterController.center.x, 0, characterController.center.y);
+            characterController.center = new Vector3(characterController.center.x, 0.58f, characterController.center.z);
+            characterController.height = 1f;
             if (Input.GetKey(KeyCode.W))
             {
                 //Crouch walk forwards
@@ -43,7 +44,8 @@ public class David : MonoBehaviour
         else  
         {
             //David is standing
-            characterController.center = new Vector3(characterController.center.x, 1, characterController.center.y);
+            characterController.center = new Vector3(characterController.center.x, 1, characterController.center.z);
+            characterController.height = 1.9f;
             if (Input.GetKey(KeyCode.W))
             {
                 if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
@@ -77,11 +79,7 @@ public class David : MonoBehaviour
         {
             transform.Rotate(new Vector3(0, -5f, 0), Space.Self);
         }
-
-        float xdirection = Mathf.Sin(Mathf.Deg2Rad * transform.rotation.eulerAngles.y);
-        float zdirection = Mathf.Cos(Mathf.Deg2Rad * transform.rotation.eulerAngles.y);
-        movementDirection = new Vector3(xdirection, 0.0f, zdirection);
-
+        movementDirection = transform.position.y > 0 ? transform.forward - new Vector3(0, 5, 0) : transform.forward;
         characterController.Move(movementDirection * velocity * Time.deltaTime);
     }
 }
