@@ -332,7 +332,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 508f19dcc4d588246820ded1db4cbdd2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 508f19dcc4d588246820ded1db4cbdd2, type: 3}
       propertyPath: m_Controller
@@ -568,6 +568,7 @@ MonoBehaviour:
   walkingVelocity: 0
   velocity: 0
   movementDirection: {x: 0, y: 0, z: 0}
+  caught: 0
 --- !u!95 &294058023
 Animator:
   serializedVersion: 4
@@ -2735,15 +2736,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1211cbfb5b6d46d59fa1f6e7358d273, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.219
+      value: 1.22
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1211cbfb5b6d46d59fa1f6e7358d273, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.897
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1211cbfb5b6d46d59fa1f6e7358d273, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.889
+      value: -5.86
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1211cbfb5b6d46d59fa1f6e7358d273, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3427,7 +3428,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1561406392
 RectTransform:
   m_ObjectHideFlags: 0
