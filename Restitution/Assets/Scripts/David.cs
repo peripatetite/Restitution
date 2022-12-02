@@ -72,12 +72,12 @@ public class David : MonoBehaviour
         //Rotate David right
         if (Input.GetKey(KeyCode.D))
         {
-            transform.Rotate(new Vector3(0, 5f, 0), Space.Self);
+            transform.Rotate(new Vector3(0, 1f, 0), Space.Self);
         }
         //Rotate David left
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Rotate(new Vector3(0, -5f, 0), Space.Self);
+            transform.Rotate(new Vector3(0, -1f, 0), Space.Self);
         }
         movementDirection = transform.position.y > 0 ? transform.forward - new Vector3(0, 5, 0) : transform.forward;
         characterController.Move(movementDirection * velocity * Time.deltaTime);
