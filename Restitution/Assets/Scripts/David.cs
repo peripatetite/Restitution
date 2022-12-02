@@ -5,16 +5,18 @@ using UnityEngine;
 public class David : MonoBehaviour
 {
     private Animator davidAnimator;
-    private CharacterController characterController;
+    private CharacterController davidController;
     public float walkingVelocity;
     public float velocity;
     public Vector3 movementDirection;
+
+    public bool caught;
 
     // Start is called before the first frame update
     void Start()
     {
         davidAnimator = GetComponent<Animator>();
-        characterController = GetComponent<CharacterController>();
+        davidController = GetComponent<CharacterController>();
         velocity = 0;
         walkingVelocity = 1.5f;
         movementDirection = new Vector3(0, 0, 0);
@@ -23,11 +25,16 @@ public class David : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (caught)
+        {
+            davidAnimator.SetTrigger("hasLost");
+            return;
+        }
         if (Input.GetKey(KeyCode.Space))
         {
             //Lower the collider
-            characterController.center = new Vector3(characterController.center.x, 0.58f, characterController.center.z);
-            characterController.height = 1f;
+            davidController.center = new Vector3(davidController.center.x, 0.58f, davidController.center.z);
+            davidController.height = 1f;
             if (Input.GetKey(KeyCode.W))
             {
                 //Crouch walk forwards
@@ -44,8 +51,8 @@ public class David : MonoBehaviour
         else  
         {
             //David is standing
-            characterController.center = new Vector3(characterController.center.x, 1, characterController.center.z);
-            characterController.height = 1.9f;
+            davidController.center = new Vector3(davidController.center.x, 1, davidController.center.z);
+            davidController.height = 1.9f;
             if (Input.GetKey(KeyCode.W))
             {
                 if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
@@ -80,6 +87,6 @@ public class David : MonoBehaviour
             transform.Rotate(new Vector3(0, -1f, 0), Space.Self);
         }
         movementDirection = transform.position.y > 0 ? transform.forward - new Vector3(0, 5, 0) : transform.forward;
-        characterController.Move(movementDirection * velocity * Time.deltaTime);
+        davidController.Move(movementDirection * velocity * Time.deltaTime);
     }
 }

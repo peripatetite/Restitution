@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,9 +14,13 @@ public class Guard : MonoBehaviour
     private GameObject david;
     private CharacterController characterController;
     private Vector3 davidCentroid;
+    private David davidScript;
+    private Action<bool> state;
+
     private int index = 1;
     private bool moving = true;
-    private bool chasing = false;
+    private bool chasing;
+    private bool caught;
 
     // Start is called before the first frame update
     void Start()
@@ -24,48 +29,79 @@ public class Guard : MonoBehaviour
         guardAnimator = GetComponent<Animator>();
         david = GameObject.Find("David");
         characterController = david.GetComponent<CharacterController>();
+        davidScript = david.GetComponent<David>();
 
         replay = GameObject.Find("Play");
         replay.SetActive(false);
 
+        state = Patrolling;
         guardAgent.destination = waypoints[index].position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 guardDirection = transform.forward;
-        Vector3 guardView = transform.position + new Vector3(0, 1.5f, 0);
-        davidCentroid = characterController.bounds.center;
-        Vector3 direction_from_guard_to_david = davidCentroid - guardView;
-        direction_from_guard_to_david.Normalize();
-        bool inView = Vector3.Angle(guardDirection, direction_from_guard_to_david) < 60;
-        RaycastHit hit;
-        if (inView
-            && Physics.Raycast(guardView, direction_from_guard_to_david, out hit, Vector3.Distance(transform.position, davidCentroid) + 1)
-            && hit.collider.gameObject == david)
+        if (!caught)
         {
-            // We should use bounds.center
-            if (Vector3.Distance(transform.position, characterController.bounds.center) < 1)
+            Vector3 guardDirection = transform.forward;
+            Vector3 guardView = transform.position + new Vector3(0, 1.5f, 0);
+            davidCentroid = characterController.bounds.center;
+            Vector3 direction_from_guard_to_david = davidCentroid - guardView;
+            direction_from_guard_to_david.Normalize();
+            bool inView = Vector3.Angle(guardDirection, direction_from_guard_to_david) < 60;
+            RaycastHit hit;
+            if (inView
+                && Physics.Raycast(guardView, direction_from_guard_to_david, out hit, Vector3.Distance(transform.position, davidCentroid) + 1)
+                && hit.collider.gameObject == david)
             {
-                replay.SetActive(true);
-                guardAnimator.SetTrigger("capture");
-                guardAgent.speed = 0;
-            } else
+                state(true);
+            }
+            else
             {
-                chasing = true;
-                guardAnimator.SetInteger("movement", 2);
-                //Set the guard's destination to the player's position
-                guardAgent.destination = davidCentroid;
-                guardAgent.speed = 3.5f;
+                state(false);
             }
         } else
         {
-            if (moving && Vector3.Distance(transform.position, waypoints[index].position) < 0.1f || chasing)
+            state(true);
+        }
+    }
+
+    IEnumerator PatrolNextLocation()
+    {
+        index = (index + 1) % waypoints.Count;
+        yield return new WaitForSeconds(UnityEngine.Random.Range(1f, 5f));
+        guardAgent.destination = waypoints[index].position;
+        moving = true;
+    }
+
+    void Patrolling(bool spotted)
+    {
+        if (spotted)
+        {
+            if (Vector3.Distance(transform.position, david.transform.position) < 1)
             {
-                guardAgent.speed = 2;
-                moving = false;
+                StopCoroutine("PatrolNextLocation");
+                caught = true;
+                state = Caught;
+            }
+            else
+            {
+                state = Chasing;
+            }
+        }
+        else
+        {
+            guardAgent.speed = 2;
+            if (chasing)
+            {
                 chasing = false;
+                guardAnimator.SetInteger("movement", 1);
+                index = (index + 1) % waypoints.Count;
+                guardAgent.destination = waypoints[index].position;
+            }
+            else if (moving && Vector3.Distance(transform.position, waypoints[index].position) < 0.1f) //TODO: DOES THE GUARD WAIT BEFORE CONTINUING TO PATROL AFTER CHASING?
+            {
+                moving = false;
                 guardAnimator.SetInteger("movement", 0);
                 StartCoroutine("PatrolNextLocation");
             }
@@ -76,15 +112,38 @@ public class Guard : MonoBehaviour
         }
     }
 
-    IEnumerator PatrolNextLocation()
+    void Chasing(bool spotted)
     {
-        index++;
-        if (index == waypoints.Count)
+        if (spotted)
         {
-            index = 0;
+            if (Vector3.Distance(transform.position, david.transform.position) < 1)
+            {
+                StopCoroutine("PatrolNextLocation");
+                caught = true;
+                state = Caught;
+            }
+            else //TODO: DON'T CHASE IF YOU ARE CAUGHT?
+            {
+                chasing = true;
+                guardAnimator.SetInteger("movement", 2);
+                //Set the guard's destination to the player's position
+                guardAgent.destination = davidCentroid;
+                guardAgent.speed = 3.5f;
+            }
         }
-        yield return new WaitForSeconds(Random.Range(1f, 5f));
-        guardAgent.destination = waypoints[index].position;
-        moving = true;
+        else
+        {
+            state = Patrolling;
+        }
+        
+    }
+
+    void Caught(bool spotted)
+    {
+        davidScript.caught = true;
+        guardAgent.destination = transform.position;
+        replay.SetActive(true);
+        guardAnimator.SetTrigger("capture");
+        guardAgent.speed = 0;
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -332,7 +332,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 508f19dcc4d588246820ded1db4cbdd2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 508f19dcc4d588246820ded1db4cbdd2, type: 3}
       propertyPath: m_Controller
@@ -407,6 +407,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   miniGate: {fileID: 2084836767}
   raisedHeight: 0.5
+--- !u!65 &189451297
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189451295}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 3}
+  m_Center: {x: 0, y: 1, z: 2}
 --- !u!1 &244474730
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,6 +581,7 @@ MonoBehaviour:
   walkingVelocity: 0
   velocity: 0
   movementDirection: {x: 0, y: 0, z: 0}
+  caught: 0
 --- !u!95 &294058023
 Animator:
   serializedVersion: 4
@@ -2323,7 +2337,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &963194226
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2704,7 +2718,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 75
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -2735,15 +2749,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1211cbfb5b6d46d59fa1f6e7358d273, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.219
+      value: 1.22
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1211cbfb5b6d46d59fa1f6e7358d273, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.897
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1211cbfb5b6d46d59fa1f6e7358d273, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.889
+      value: -5.86
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1211cbfb5b6d46d59fa1f6e7358d273, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3427,7 +3441,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1561406392
 RectTransform:
   m_ObjectHideFlags: 0

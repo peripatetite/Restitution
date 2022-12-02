@@ -11,7 +11,7 @@ public class TutorialGuard : MonoBehaviour {
     private float raisedHeight;
 
     private GameObject player;
-    private Collider playerCollider;
+    private CharacterController playerCollider;
     private Vector3 guardView;
     private Vector3 raisedPos, loweredPos;
     private Vector3 targetPos;
@@ -34,22 +34,36 @@ public class TutorialGuard : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update() {
+        /*
         Vector3 guardDirection = transform.forward;
         Vector3 playerCentroid = playerCollider.bounds.center;
         Vector3 direction_from_guard_to_david = (playerCentroid - guardView).normalized;
-        bool inView = Vector3.Angle(guardDirection, direction_from_guard_to_david) < 60;
-        RaycastHit hit;
-        if (inView
-            && Physics.Raycast(guardView, direction_from_guard_to_david, out hit, Vector3.Distance(transform.position, playerCentroid) + 1)
-            && hit.collider.tag == "Player") {
-            // TODO: Display guard warning to player
+        bool inView = Vector3.Angle(guardDirection, direction_from_guard_to_david) < 50;
+
+        if (inView && playerCollider.center.y > 0.9f) {
             targetPos = raisedPos;
         } else {
             targetPos = loweredPos;
 		}
+        */
 
 		if (Mathf.Abs(miniGate.transform.position.y - targetPos.y) > EPS) {
-			miniGate.transform.position = Vector3.Lerp(miniGate.transform.position, targetPos, 0.4f);
+			miniGate.transform.position = Vector3.Lerp(miniGate.transform.position, targetPos, 0.2f);
+		}
+	}
+
+	void OnTriggerStay(Collider other) {
+        // Wall will be raised if player (without crouching) enters a prism trigger infront of the window
+        // Wall will stay raised if the player crouches infront of the window.
+		if (other.tag == "Player" && playerCollider.center.y > 0.9f) {
+			// TODO: Display guard warning to player
+			targetPos = raisedPos;
+		}
+	}
+
+	private void OnTriggerExit(Collider other) {
+		if (other.tag == "Player") {
+            targetPos = loweredPos;
 		}
 	}
 }
