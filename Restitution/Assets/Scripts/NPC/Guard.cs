@@ -99,7 +99,7 @@ public class Guard : MonoBehaviour
                 index = (index + 1) % waypoints.Count;
                 guardAgent.destination = waypoints[index].position;
             }
-            else if (moving && Vector3.Distance(transform.position, waypoints[index].position) < 0.1f) //TODO: DOES THE GUARD WAIT BEFORE CONTINUING TO PATROL AFTER CHASING?
+            else if (moving && Vector3.Distance(transform.position, waypoints[index].position) < 0.1f)
             {
                 moving = false;
                 guardAnimator.SetInteger("movement", 0);
@@ -135,7 +135,6 @@ public class Guard : MonoBehaviour
         {
             state = Patrolling;
         }
-        
     }
 
     void Caught(bool spotted)
@@ -143,7 +142,10 @@ public class Guard : MonoBehaviour
         davidScript.caught = true;
         guardAgent.destination = transform.position;
         replay.SetActive(true);
-        guardAnimator.SetTrigger("capture");
+        if (!guardAnimator.GetCurrentAnimatorStateInfo(0).IsName("Excited"))
+        { 
+            guardAnimator.SetTrigger("capture");
+        }
         guardAgent.speed = 0;
     }
 }
