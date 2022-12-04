@@ -779,7 +779,7 @@ MonoBehaviour:
   walkingVelocity: 0
   velocity: 0
   movementDirection: {x: 0, y: 0, z: 0}
-  DavidCollider: {fileID: 294058019}
+  davidCollider: {fileID: 294058019}
   ZoomOut: {fileID: 517158801}
   caught: 0
 --- !u!95 &294058023

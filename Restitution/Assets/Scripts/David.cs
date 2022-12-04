@@ -13,7 +13,6 @@ public class David : MonoBehaviour
     public float walkingVelocity;
     public float velocity;
     public Vector3 movementDirection;
-    public Collider davidCollider;
     public Button ZoomOut;
     bool zoomedout;
 
@@ -129,7 +128,7 @@ public class David : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0)) {
             if (zoomedout) {
-                davidCollider.enabled = false;
+                davidController.enabled = false;
                 Ray ray = Camera.main.ScreenPointToRay( Input.mousePosition );
                 RaycastHit hit;
                 
@@ -146,7 +145,7 @@ public class David : MonoBehaviour
                     zoomedout = false; 
                 }
                 
-                davidCollider.enabled = true; 
+                davidController.enabled = true; 
             } 
         }
     }
