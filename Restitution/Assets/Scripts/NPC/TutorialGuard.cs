@@ -12,9 +12,11 @@ public class TutorialGuard : MonoBehaviour {
 
     private GameObject player;
     private CharacterController playerCollider;
+    private QuirpManager quirpManager;
     private Vector3 guardView;
     private Vector3 raisedPos, loweredPos;
     private Vector3 targetPos;
+    private bool quirp1, quirp2;
 
     private const float EPS = 0.05f;
 
@@ -25,7 +27,7 @@ public class TutorialGuard : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player");
         if (player == null) { Debug.LogError("Player not found in scene! Is tag not correctly assigned?"); }
         playerCollider = player.GetComponent<CharacterController>();
-
+        quirpManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<QuirpManager>();
         guardView = transform.position + new Vector3(0, 1.5f, 0);
         raisedPos = new Vector3(miniGate.transform.position.x, raisedHeight, miniGate.transform.position.z);
         loweredPos = miniGate.transform.position;
@@ -56,14 +58,24 @@ public class TutorialGuard : MonoBehaviour {
         // Wall will be raised if player (without crouching) enters a prism trigger infront of the window
         // Wall will stay raised if the player crouches infront of the window.
 		if (other.tag == "Player" && playerCollider.center.y > 0.9f) {
-			// TODO: Display guard warning to player
+            // TODO: Display guard warning to player
+            if (!quirp1) {
+                quirpManager.AddQuirp("Guard: Hey! The museum is closed!");
+                quirp1 = true;
+            }
 			targetPos = raisedPos;
+		} else if (other.tag == "Player" && targetPos == raisedPos && playerCollider.center.y < 0.9f) {
+            if (!quirp2) {
+                quirpManager.AddQuirp("Guard: I know you are still there!");
+                quirp2 = true;
+            }
 		}
 	}
 
 	private void OnTriggerExit(Collider other) {
 		if (other.tag == "Player") {
             targetPos = loweredPos;
+            quirp1 = quirp2 = false;
 		}
 	}
 }
