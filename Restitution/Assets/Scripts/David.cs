@@ -9,6 +9,8 @@ public class David : MonoBehaviour
     private CharacterController davidController;
     private float regularFOV;
     private Quaternion Camera_rot;
+    public AudioClip walkingAudio;
+    private AudioSource davidAudio;
 
     public float walkingVelocity;
     public float velocity;
@@ -23,7 +25,7 @@ public class David : MonoBehaviour
     {
         davidAnimator = GetComponent<Animator>();
         davidController = GetComponent<CharacterController>();
-
+        davidAudio = GetComponent<AudioSource>(); 
 
         velocity = 0;
         walkingVelocity = 1.5f;
@@ -33,6 +35,18 @@ public class David : MonoBehaviour
         regularFOV = Camera.main.fieldOfView;
         Camera_rot = Camera.main.transform.rotation;
         ZoomOut.onClick.AddListener(LookAway);
+    }
+
+    void Step() {
+        davidAudio.PlayOneShot(walkingAudio, 0.1f);
+    }
+
+    void crouchStep() {
+        davidAudio.PlayOneShot(walkingAudio, 0.05f);
+    }
+
+    void runStep() {
+        davidAudio.PlayOneShot(walkingAudio, 0.2f);
     }
 
     void LookAway() 
