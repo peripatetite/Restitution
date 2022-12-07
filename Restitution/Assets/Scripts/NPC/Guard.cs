@@ -9,7 +9,6 @@ public class Guard : MonoBehaviour
     public List<Transform> waypoints;
     public GameObject replay;
 
-    private GameObject quirp;
     private NavMeshAgent guardAgent;
     private Animator guardAnimator;
     private GameObject david;
@@ -31,11 +30,6 @@ public class Guard : MonoBehaviour
         david = GameObject.Find("David");
         characterController = david.GetComponent<CharacterController>();
         davidScript = david.GetComponent<David>();
-
-        //replay.SetActive(false);
-
-        quirp = GameObject.Find("Quirp");
-        //quirp.SetActive(true);
 
         state = Patrolling;
         guardAgent.destination = waypoints[index].position;
@@ -144,7 +138,6 @@ public class Guard : MonoBehaviour
     {
         davidScript.caught = true;
         guardAgent.destination = transform.position;
-        quirp.SetActive(false);
         replay.SetActive(true);
         if (!guardAnimator.GetCurrentAnimatorStateInfo(0).IsName("Excited"))
         { 

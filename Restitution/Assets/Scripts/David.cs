@@ -73,7 +73,10 @@ public class David : MonoBehaviour
                 davidAnimator.SetTrigger("hasLost");
                 triggered = true;
             }
-            LookAway();
+            if (!zoomedout)
+            {
+                LookAway();
+            }
             return;
         }
 
@@ -89,7 +92,7 @@ public class David : MonoBehaviour
             {
                 //Crouch walk forwards
                 davidAnimator.SetInteger("movement", 3);
-                velocity = Mathf.Min(velocity + 0.25f, walkingVelocity / 2);
+                velocity = Mathf.Min(velocity + 0.35f, walkingVelocity / 2);
             }
             else
             {
@@ -133,14 +136,14 @@ public class David : MonoBehaviour
         {
             if (!zoomedout)
                 LookAway();
-            transform.Rotate(new Vector3(0, 1f, 0), Space.Self);
+            transform.Rotate(new Vector3(0, 3f, 0), Space.Self);
         }
         //Rotate David left
         if (Input.GetKey(KeyCode.A))
         {
             if (!zoomedout)
                 LookAway();
-            transform.Rotate(new Vector3(0, -1f, 0), Space.Self);
+            transform.Rotate(new Vector3(0, -3f, 0), Space.Self);
         }
         movementDirection = transform.position.y > 0 ? transform.forward - new Vector3(0, 5, 0) : transform.forward;
         davidController.Move(movementDirection * velocity * Time.deltaTime);
