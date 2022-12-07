@@ -7,6 +7,7 @@ public class Interactable : MonoBehaviour {
     public RectTransform keyIcon;
     public KeyCode keyCode = KeyCode.E;
 
+	protected David playerScript;
 	protected bool interactable;
 	protected bool interacting;
 	protected bool inRange;
@@ -32,6 +33,7 @@ public class Interactable : MonoBehaviour {
 	protected virtual void PlayerStopInteract() { interacting = false; }
 
 	private void Start() {
+		playerScript = LevelManager.instance.player.GetComponent<David>();
 		interactable = true;
 		keyIconScale = keyIcon.sizeDelta;
 		keyIconScale_target = Vector2.zero;
@@ -49,6 +51,11 @@ public class Interactable : MonoBehaviour {
 					PlayerBeginInteract();
 				}
 			}
+		}
+
+		if (playerScript.caught) {
+			PlayerStopInteract();
+			interactable = false;
 		}
 
 		if (interactable && interacting)

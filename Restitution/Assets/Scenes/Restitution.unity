@@ -4567,6 +4567,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 871772681}
+  - component: {fileID: 871772683}
   - component: {fileID: 871772682}
   m_Layer: 0
   m_Name: GameManager
@@ -4604,6 +4605,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quirpDisplay: {fileID: 1815058139}
   quirpDuration: 5
+--- !u!114 &871772683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871772680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd92bc64d61384292b071ee76787f689, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 294058018}
 --- !u!1001 &889171174
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11229,7 +11243,7 @@ Transform:
   m_GameObject: {fileID: 2084836767}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -2, z: 6.5}
-  m_LocalScale: {x: 3, y: 1, z: 0.2}
+  m_LocalScale: {x: 3, y: 2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -11595,7 +11609,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4599618081812298881, guid: 9caefda77d9594d71ac6bfdd6e7c3a43, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7097352224097909825, guid: 9caefda77d9594d71ac6bfdd6e7c3a43, type: 3}
       propertyPath: m_Enabled
