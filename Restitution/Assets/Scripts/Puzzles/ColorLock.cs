@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 public class ColorLock : Interactable {
+	public GameObject puzzle;
 	public Image[] slots = new Image[4];
     public TextMeshProUGUI[] inputs = new TextMeshProUGUI[4];
     public Color[] jarColors = new Color[10];
@@ -14,7 +15,17 @@ public class ColorLock : Interactable {
 	private int counter = 0;
 
 	protected override void Initialize() {
+		base.Initialize();
 		GeneratePasscode();
+	}
+	protected override void PlayerBeginInteract() {
+		base.PlayerBeginInteract();
+		puzzle.SetActive(true);
+	}
+
+	protected override void PlayerStopInteract() {
+		base.PlayerStopInteract();
+		puzzle.SetActive(false);
 	}
 
 	private void GeneratePasscode() {
@@ -23,11 +34,9 @@ public class ColorLock : Interactable {
 		for (int i = 0; i < 4; i++) {
 			int index = Random.Range(0, nums.Count);
 			passcode[i] = nums[index];
-			Debug.Log(passcode[i]);
 			slots[i].color = jarColors[nums[index]];
 			nums.RemoveAt(index);
 		}
-
 	}
 
 	public void EnterNumber(int num) {
@@ -48,7 +57,8 @@ public class ColorLock : Interactable {
 	}
 
 	private void UnlockExit() {
-
+		PlayerStopInteract();
+		interactable = false;
 	}
 
 	private void ResetSlots() {
