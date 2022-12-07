@@ -24,7 +24,7 @@ public class TutorialGuard : MonoBehaviour {
 	void Start() {
         if (miniGate == null) { Debug.LogError("Mini gate not assigned to tutorial guard!"); }
 
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = LevelManager.instance.player;
         if (player == null) { Debug.LogError("Player not found in scene! Is tag not correctly assigned?"); }
         playerCollider = player.GetComponent<CharacterController>();
         quirpManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<QuirpManager>();
@@ -50,7 +50,7 @@ public class TutorialGuard : MonoBehaviour {
         */
 
 		if (Mathf.Abs(miniGate.transform.position.y - targetPos.y) > EPS) {
-			miniGate.transform.position = Vector3.Lerp(miniGate.transform.position, targetPos, 0.2f);
+			miniGate.transform.position = Vector3.Lerp(miniGate.transform.position, targetPos, Mathf.Min(1, 10f * Time.deltaTime));
 		}
 	}
 
