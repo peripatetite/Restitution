@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class David : MonoBehaviour
 {
-    private Animator davidAnimator;
-    private CharacterController davidController;
     public float walkingVelocity;
     public float velocity;
     public Vector3 movementDirection;
 
     public bool caught;
+
+    private Animator davidAnimator;
+    private CharacterController davidController;
+
+    private bool triggered;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +30,11 @@ public class David : MonoBehaviour
     {
         if (caught)
         {
-            davidAnimator.SetTrigger("hasLost");
+            if (!triggered)
+            {
+                davidAnimator.SetTrigger("hasLost");
+                triggered = true;
+            }
             return;
         }
         if (Input.GetKey(KeyCode.Space))
