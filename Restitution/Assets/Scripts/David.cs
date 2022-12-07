@@ -20,6 +20,8 @@ public class David : MonoBehaviour
 
     public bool caught;
 
+    private bool triggered;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -66,7 +68,11 @@ public class David : MonoBehaviour
     {
         if (caught)
         {
-            davidAnimator.SetTrigger("hasLost");
+            if (!triggered)
+            {
+                davidAnimator.SetTrigger("hasLost");
+                triggered = true;
+            }
             LookAway();
             return;
         }
