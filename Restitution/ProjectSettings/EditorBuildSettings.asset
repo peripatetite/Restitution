@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Restitution.unity
+    path: Assets/Scenes/_LEVEL1_.unity
     guid: b54e662d5af298944bf3cb36631cb3db
   m_configObjects: {}
