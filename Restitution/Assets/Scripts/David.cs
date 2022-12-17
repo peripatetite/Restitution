@@ -16,6 +16,7 @@ public class David : MonoBehaviour
     public float velocity;
     public Vector3 movementDirection;
     public Button ZoomOut;
+    public bool allowZoom;
     bool zoomedout;
 
     public bool caught;
@@ -33,6 +34,7 @@ public class David : MonoBehaviour
         velocity = 0;
         walkingVelocity = 1.5f;
         movementDirection = new Vector3(0, 0, 0);
+        allowZoom = true;
         zoomedout = true;
         ZoomOut.gameObject.SetActive(false);
         regularFOV = Camera.main.fieldOfView;
@@ -157,7 +159,7 @@ public class David : MonoBehaviour
         
 
         if (Input.GetMouseButtonDown(0)) {
-            if (zoomedout) {
+            if (zoomedout && allowZoom) {
                 davidController.enabled = false;
                 Ray ray = Camera.main.ScreenPointToRay( Input.mousePosition );
                 RaycastHit hit;
