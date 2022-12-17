@@ -59,6 +59,7 @@ public class ColorLock : Interactable {
 	private void UnlockExit() {
 		PlayerStopInteract();
 		interactable = false;
+		LevelManager.instance.AdvanceLevel();
 	}
 
 	private void ResetSlots() {
