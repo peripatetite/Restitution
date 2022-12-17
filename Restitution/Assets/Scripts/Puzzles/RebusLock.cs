@@ -10,7 +10,7 @@ public class RebusLock : Interactable
 	public GameObject[] lights;
 
 	private string answer1 = "stolen";
-	private string answer2 = "artifact";
+	private string answer2 = "artifacts";
 	private int selected = 0;
 
 	protected override void Initialize()
@@ -47,13 +47,16 @@ public class RebusLock : Interactable
 		if (inputs[0].text.ToLower().Trim().Equals(answer1)
 			&& inputs[1].text.ToLower().Trim().Equals(answer2))
 		{
-			PlayerStopInteract();
 			TurnOnLights();
         }
     }
 
 	private void TurnOnLights()
 	{
+		foreach (GameObject light in lights)
+        {
+			light.SetActive(true);
+        }
 		PlayerStopInteract();
 		interactable = false;
 	}
