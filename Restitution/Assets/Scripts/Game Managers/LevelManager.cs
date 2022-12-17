@@ -27,7 +27,7 @@ public class LevelManager : MonoBehaviour {
         for (float alpha = 0f; alpha <= 1f; alpha += 0.02f) {
             c.a = alpha;
             mask.color = c;
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.1f);
 		}
         SceneManager.LoadScene(nextLevel);
 	}
