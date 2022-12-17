@@ -8,6 +8,6 @@ public class Play : MonoBehaviour
     // Update is called once per frame
     public void PlayGame()
     {
-        SceneManager.LoadScene(0, LoadSceneMode.Single);
+        SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
 }
