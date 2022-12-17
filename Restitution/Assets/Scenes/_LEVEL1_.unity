@@ -966,7 +966,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2225eb4da23d61942867ea850abf0b52, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.66
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2225eb4da23d61942867ea850abf0b52, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1063,7 +1063,9 @@ MonoBehaviour:
   velocity: 0
   movementDirection: {x: 0, y: 0, z: 0}
   ZoomOut: {fileID: 1761644198}
+  allowZoom: 0
   caught: 0
+  frozen: 0
 --- !u!95 &294058023
 Animator:
   serializedVersion: 4

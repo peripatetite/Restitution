@@ -15,7 +15,6 @@ public class RebusLock : Interactable
 	private string answer2 = "artifacts";
 	private int selected = 0;
 
-	// Start is called before the first frame update
 	protected override void Initialize()
 	{
 		//Why isn't the first box being selected?
@@ -36,9 +35,9 @@ public class RebusLock : Interactable
 		puzzle.SetActive(false);
 	}	
 
-    // Update is called once per frame
     protected override void PlayerInteract()
     {
+		//Allow the player to toggle between guess boxes with Tab
 		if (Input.GetKeyDown(KeyCode.Tab))
         {
 			selected = (selected + 1) % 2;
@@ -46,6 +45,7 @@ public class RebusLock : Interactable
         }
     }
 
+	//Turn on the lights for the next puzzle
 	private void TurnOnLights()
 	{
 		foreach (GameObject light in lights)
@@ -55,7 +55,8 @@ public class RebusLock : Interactable
 		PlayerStopInteract();
 		interactable = false;
 	}
-
+	
+	//Check both words, indicating if one is correct by changing the background to green
 	public void Guess()
     {
 		if (inputs[0].text.ToLower().Trim().Equals(answer1)
@@ -66,9 +67,15 @@ public class RebusLock : Interactable
 		} else if (inputs[0].text.ToLower().Trim().Equals(answer1))
         {
 			inputs[0].gameObject.GetComponent<Image>().color = new Color32(0, 180, 0, 255);
+			inputs[1].text = "";
 		} else if (inputs[1].text.ToLower().Trim().Equals(answer2))
         {
 			inputs[1].gameObject.GetComponent<Image>().color = new Color32(0, 180, 0, 255);
-		}
+			inputs[0].text = "";
+		} else
+        {
+			inputs[0].text = "";
+			inputs[1].text = "";
+        }
 	}
 }

@@ -52,7 +52,6 @@ public class ColorLock : Interactable {
 				return;
 			}
 		}
-
 		UnlockExit();
 	}
 
