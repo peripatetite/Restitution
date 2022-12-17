@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class RebusLock : Interactable
@@ -9,6 +10,7 @@ public class RebusLock : Interactable
 	public TMP_InputField[] inputs = new TMP_InputField[2];
 	public GameObject[] lights;
 
+	private QuirpManager quirpManager;
 	private string answer1 = "stolen";
 	private string answer2 = "artifacts";
 	private int selected = 0;
@@ -16,9 +18,10 @@ public class RebusLock : Interactable
 	// Start is called before the first frame update
 	protected override void Initialize()
 	{
-		//How can we select the first box when the puzzle opens? Just do it through another script?
+		//Why isn't the first box being selected?
 		base.Initialize();
 		inputs[0].Select();
+		quirpManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<QuirpManager>();
 	}
 
 	protected override void PlayerBeginInteract()
@@ -41,11 +44,6 @@ public class RebusLock : Interactable
 			selected = (selected + 1) % 2;
 			inputs[selected].Select();
         }
-		if (inputs[0].text.ToLower().Trim().Equals(answer1)
-			&& inputs[1].text.ToLower().Trim().Equals(answer2))
-		{
-			TurnOnLights();
-        }
     }
 
 	private void TurnOnLights()
@@ -58,5 +56,19 @@ public class RebusLock : Interactable
 		interactable = false;
 	}
 
-	//Should we have a button that they press when they want to guess?
+	public void Guess()
+    {
+		if (inputs[0].text.ToLower().Trim().Equals(answer1)
+			&& inputs[1].text.ToLower().Trim().Equals(answer2))
+		{
+			quirpManager.AddQuirp("Correct!");
+			TurnOnLights();
+		} else if (inputs[0].text.ToLower().Trim().Equals(answer1))
+        {
+			inputs[0].gameObject.GetComponent<Image>().color = new Color32(0, 180, 0, 255);
+		} else if (inputs[1].text.ToLower().Trim().Equals(answer2))
+        {
+			inputs[1].gameObject.GetComponent<Image>().color = new Color32(0, 180, 0, 255);
+		}
+	}
 }
