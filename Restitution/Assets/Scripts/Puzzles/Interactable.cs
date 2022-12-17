@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class Interactable : MonoBehaviour {
     public RectTransform keyIcon;
@@ -46,7 +47,8 @@ public class Interactable : MonoBehaviour {
 			keyIconScale_target = keyIconScale;
 			if (interactable && Input.GetKeyDown(keyCode)) {
 				if (interacting) {
-					PlayerStopInteract();
+					if (EventSystem.current.currentSelectedGameObject.GetComponent<InputField>() == null)
+						PlayerStopInteract();
 				} else {
 					PlayerBeginInteract();
 				}
