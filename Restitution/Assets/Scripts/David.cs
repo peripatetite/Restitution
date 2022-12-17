@@ -19,6 +19,7 @@ public class David : MonoBehaviour
     bool zoomedout;
 
     public bool caught;
+    public bool frozen;
 
     private bool triggered;
 
@@ -37,6 +38,8 @@ public class David : MonoBehaviour
         regularFOV = Camera.main.fieldOfView;
         Camera_rot = Camera.main.transform.rotation;
         ZoomOut.onClick.AddListener(LookAway);
+
+        frozen = false;
     }
 
     void Step() {
@@ -80,7 +83,11 @@ public class David : MonoBehaviour
             return;
         }
 
-        
+        if (frozen)
+        {
+            return;
+        }
+
         if (Input.GetKey(KeyCode.Space))
         {
             if (!zoomedout)

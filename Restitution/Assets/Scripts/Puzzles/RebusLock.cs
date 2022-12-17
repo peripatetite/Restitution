@@ -13,10 +13,14 @@ public class RebusLock : Interactable
 	private string answer2 = "artifacts";
 	private int selected = 0;
 
+	// Start is called before the first frame update
 	protected override void Initialize()
 	{
+		//How can we select the first box when the puzzle opens? Just do it through another script?
 		base.Initialize();
+		inputs[0].Select();
 	}
+
 	protected override void PlayerBeginInteract()
 	{
 		base.PlayerBeginInteract();
@@ -27,17 +31,10 @@ public class RebusLock : Interactable
 	{
 		base.PlayerStopInteract();
 		puzzle.SetActive(false);
-	}
-
-	// Start is called before the first frame update
-	void Start()
-    {
-		//How can we select the first box when the puzzle opens? Just do it through another script?
-		inputs[0].Select();
-    }
+	}	
 
     // Update is called once per frame
-    void Update()
+    protected override void PlayerInteract()
     {
 		if (Input.GetKeyDown(KeyCode.Tab))
         {

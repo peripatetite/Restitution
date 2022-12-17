@@ -22,7 +22,10 @@ public class Interactable : MonoBehaviour {
 	/// <summary>
 	/// Called (once) when player starts interacting with this Interactable.
 	/// </summary>
-	protected virtual void PlayerBeginInteract() { interacting = true; }
+	protected virtual void PlayerBeginInteract() { 
+		interacting = true;
+		playerScript.frozen = true;
+	}
 	/// <summary>
 	/// Called when player is interacting with this Interactable.
 	/// </summary>
@@ -30,7 +33,10 @@ public class Interactable : MonoBehaviour {
 	/// <summary>
 	/// Called (once) when player stops or can no longer interact with this Interactable.
 	/// </summary>
-	protected virtual void PlayerStopInteract() { interacting = false; }
+	protected virtual void PlayerStopInteract() { 
+		interacting = false;
+		playerScript.frozen = false;
+	}
 
 	private void Start() {
 		playerScript = LevelManager.instance.player.GetComponent<David>();
