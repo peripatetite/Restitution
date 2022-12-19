@@ -7,8 +7,8 @@ using UnityEngine.AI;
 public class Guard : MonoBehaviour
 {
     public List<Transform> waypoints;
-    public GameObject replay;
 
+    private GameObject replay;
     private NavMeshAgent guardAgent;
     private Animator guardAnimator;
     private GameObject david;
@@ -25,6 +25,7 @@ public class Guard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        replay = LevelManager.instance.replayButton;
         guardAgent = GetComponent<NavMeshAgent>();
         guardAnimator = GetComponent<Animator>();
         david = GameObject.Find("David");
@@ -40,8 +41,8 @@ public class Guard : MonoBehaviour
     {
         if (!caught)
         {
-            Vector3 guardDirection = transform.forward;
-            Vector3 guardView = transform.position + new Vector3(0, 1.5f, 0);
+            Vector3 guardDirection = transform.forward; //which direction the guard is looking
+            Vector3 guardView = transform.position + new Vector3(0, 1.5f, 0); //raised because the guard's eyes are not on the floor
             davidCentroid = characterController.bounds.center;
             Vector3 direction_from_guard_to_david = davidCentroid - guardView;
             direction_from_guard_to_david.Normalize();
@@ -66,7 +67,7 @@ public class Guard : MonoBehaviour
     IEnumerator PatrolNextLocation()
     {
         index = (index + 1) % waypoints.Count;
-        yield return new WaitForSeconds(UnityEngine.Random.Range(1f, 5f));
+        yield return new WaitForSeconds(UnityEngine.Random.Range(2f, 6f));
         guardAgent.destination = waypoints[index].position;
         moving = true;
     }
@@ -119,7 +120,7 @@ public class Guard : MonoBehaviour
                 caught = true;
                 state = Caught;
             }
-            else //TODO: DON'T CHASE IF YOU ARE CAUGHT?
+            else
             {
                 chasing = true;
                 guardAnimator.SetInteger("movement", 2);

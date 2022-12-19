@@ -88,6 +88,10 @@ public class Interactable : MonoBehaviour {
 		}
 	}
 
+	public void SetInteractable(bool state) {
+		interactable = state;
+	}
+
 	private void TweenKeyIcon() {
 		if (!interactable) { keyIconScale_target = Vector2.zero; }
 		if (keyIconScale_target == Vector2.zero && keyIcon.sizeDelta.sqrMagnitude < 0.01f) {

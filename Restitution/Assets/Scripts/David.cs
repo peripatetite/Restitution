@@ -13,15 +13,17 @@ public class David : MonoBehaviour
     private AudioSource davidAudio;
 
     public float walkingVelocity;
-    public float velocity;
+    public float rotateSpeed;
     public Vector3 movementDirection;
     public Button ZoomOut;
     public bool allowZoom;
+    public Camera playerCamera;
     bool zoomedout;
 
     public bool caught;
     public bool frozen;
 
+    private float velocity;
     private bool triggered;
 
     // Start is called before the first frame update
@@ -29,16 +31,16 @@ public class David : MonoBehaviour
     {
         davidAnimator = GetComponent<Animator>();
         davidController = GetComponent<CharacterController>();
-        davidAudio = GetComponent<AudioSource>(); 
+        davidAudio = GetComponent<AudioSource>();
 
+        playerCamera = Camera.main;
         velocity = 0;
-        walkingVelocity = 1.5f;
         movementDirection = new Vector3(0, 0, 0);
         allowZoom = true;
         zoomedout = true;
         ZoomOut.gameObject.SetActive(false);
-        regularFOV = Camera.main.fieldOfView;
-        Camera_rot = Camera.main.transform.rotation;
+        regularFOV = playerCamera.fieldOfView;
+        Camera_rot = playerCamera.transform.rotation;
         ZoomOut.onClick.AddListener(LookAway);
 
         frozen = false;
@@ -58,8 +60,8 @@ public class David : MonoBehaviour
 
     void LookAway() 
     {
-        Camera.main.transform.rotation = Camera_rot;
-        Camera.main.fieldOfView = regularFOV;
+        playerCamera.transform.rotation = Camera_rot;
+        playerCamera.fieldOfView = regularFOV;
         zoomedout = true;
         ZoomOut.gameObject.SetActive(false);
         foreach(Renderer rend in GetComponentsInChildren<Renderer>(true))
@@ -89,6 +91,8 @@ public class David : MonoBehaviour
         {
             return;
         }
+
+        float targetZ = -1;
 
         if (Input.GetKey(KeyCode.Space))
         {
@@ -145,30 +149,41 @@ public class David : MonoBehaviour
         {
             if (!zoomedout)
                 LookAway();
-            transform.Rotate(new Vector3(0, 3f, 0), Space.Self);
+            transform.Rotate(new Vector3(0, 1, 0) * rotateSpeed * Time.deltaTime, Space.Self);
         }
         //Rotate David left
         if (Input.GetKey(KeyCode.A))
         {
             if (!zoomedout)
                 LookAway();
-            transform.Rotate(new Vector3(0, -3f, 0), Space.Self);
+            transform.Rotate(new Vector3(0, -1, 0) * rotateSpeed * Time.deltaTime, Space.Self);
         }
         movementDirection = transform.position.y > 0 ? transform.forward - new Vector3(0, 5, 0) : transform.forward;
         davidController.Move(movementDirection * velocity * Time.deltaTime);
-        
+
+        //After rotating and moving, see if the camera is in the wall and if so move it out of the wall
+        Vector3 source = transform.position + new Vector3(0, playerCamera.transform.localPosition.y, 0);
+        Vector3 sourceToCamera = source - playerCamera.transform.position;
+        sourceToCamera.Normalize();
+        RaycastHit cameraHit;
+        if (Physics.Raycast(source, -transform.forward, out cameraHit, 1))
+        {
+            targetZ = -cameraHit.distance;
+        }
+
+        playerCamera.transform.localPosition = Vector3.Lerp(playerCamera.transform.localPosition, new Vector3(0, playerCamera.transform.localPosition.y, targetZ), 0.6f);
 
         if (Input.GetMouseButtonDown(0)) {
             if (zoomedout && allowZoom) {
                 davidController.enabled = false;
-                Ray ray = Camera.main.ScreenPointToRay( Input.mousePosition );
+                Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
                 
-                if( Physics.Raycast( ray, out hit, 100 ) )
+                if(Physics.Raycast(ray, out hit, 100))
                 {
-                    Camera_rot = Camera.main.transform.rotation;
-                    Camera.main.transform.LookAt(hit.point);
-                    Camera.main.fieldOfView = 10;
+                    Camera_rot = playerCamera.transform.rotation;
+                    playerCamera.transform.LookAt(hit.point);
+                    playerCamera.fieldOfView = 10;
                     foreach(Renderer rend in GetComponentsInChildren<Renderer>(true))
                     {
                         rend.enabled = false;
