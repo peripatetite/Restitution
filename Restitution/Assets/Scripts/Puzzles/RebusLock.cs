@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
@@ -17,9 +18,7 @@ public class RebusLock : Interactable
 
 	protected override void Initialize()
 	{
-		//Why isn't the first box being selected?
 		base.Initialize();
-		inputs[0].Select();
 		quirpManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<QuirpManager>();
 	}
 
@@ -27,6 +26,9 @@ public class RebusLock : Interactable
 	{
 		base.PlayerBeginInteract();
 		puzzle.SetActive(true);
+
+		//Select the first box when the play opens the lock
+		inputs[0].Select();
 	}
 
 	protected override void PlayerStopInteract()
@@ -68,14 +70,17 @@ public class RebusLock : Interactable
         {
 			inputs[0].gameObject.GetComponent<Image>().color = new Color32(0, 180, 0, 255);
 			inputs[1].text = "";
+			inputs[1].Select();
 		} else if (inputs[1].text.ToLower().Trim().Equals(answer2))
         {
 			inputs[1].gameObject.GetComponent<Image>().color = new Color32(0, 180, 0, 255);
 			inputs[0].text = "";
+			inputs[0].Select();
 		} else
         {
 			inputs[0].text = "";
 			inputs[1].text = "";
-        }
+			inputs[0].Select();
+		}
 	}
 }

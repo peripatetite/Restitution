@@ -119,7 +119,7 @@ public class Guard : MonoBehaviour
                 caught = true;
                 state = Caught;
             }
-            else //TODO: DON'T CHASE IF YOU ARE CAUGHT?
+            else
             {
                 chasing = true;
                 guardAnimator.SetInteger("movement", 2);

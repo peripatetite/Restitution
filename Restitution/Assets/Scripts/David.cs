@@ -13,7 +13,7 @@ public class David : MonoBehaviour
     private AudioSource davidAudio;
 
     public float walkingVelocity;
-    public float velocity;
+    public float rotateSpeed;
     public Vector3 movementDirection;
     public Button ZoomOut;
     public bool allowZoom;
@@ -22,6 +22,7 @@ public class David : MonoBehaviour
     public bool caught;
     public bool frozen;
 
+    private float velocity;
     private bool triggered;
 
     // Start is called before the first frame update
@@ -32,7 +33,6 @@ public class David : MonoBehaviour
         davidAudio = GetComponent<AudioSource>(); 
 
         velocity = 0;
-        walkingVelocity = 1.5f;
         movementDirection = new Vector3(0, 0, 0);
         allowZoom = true;
         zoomedout = true;
@@ -145,14 +145,14 @@ public class David : MonoBehaviour
         {
             if (!zoomedout)
                 LookAway();
-            transform.Rotate(new Vector3(0, 3f, 0), Space.Self);
+            transform.Rotate(new Vector3(0, 1, 0) * rotateSpeed * Time.deltaTime, Space.Self);
         }
         //Rotate David left
         if (Input.GetKey(KeyCode.A))
         {
             if (!zoomedout)
                 LookAway();
-            transform.Rotate(new Vector3(0, -3f, 0), Space.Self);
+            transform.Rotate(new Vector3(0, -1, 0) * rotateSpeed * Time.deltaTime, Space.Self);
         }
         movementDirection = transform.position.y > 0 ? transform.forward - new Vector3(0, 5, 0) : transform.forward;
         davidController.Move(movementDirection * velocity * Time.deltaTime);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using TMPro;
 
 public class AnagramLock : Interactable
@@ -13,13 +14,13 @@ public class AnagramLock : Interactable
 	protected override void Initialize()
 	{
 		base.Initialize();
-		input.Select();
 	}
 
 	protected override void PlayerBeginInteract()
 	{
 		base.PlayerBeginInteract();
 		puzzle.SetActive(true);
+		input.Select();
 	}
 
 	protected override void PlayerStopInteract()
