@@ -3049,7 +3049,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkingAudio: {fileID: 8300000, guid: 5c9bdbce37b06a24fa6ea793bcfd1907, type: 3}
   walkingVelocity: 1.8
-  rotateSpeed: 100
+  rotateSpeed: 124
   movementDirection: {x: 0, y: 0, z: 0}
   ZoomOut: {fileID: 0}
   allowZoom: 0

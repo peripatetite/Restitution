@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class Play : MonoBehaviour
 {
-    // Update is called once per frame
-    public void PlayGame()
+    public string level;
+    public void PlayLevel()
     {
-        SceneManager.LoadScene(1, LoadSceneMode.Single);
+        SceneManager.LoadScene(level);
     }
 }

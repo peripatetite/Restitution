@@ -243,6 +243,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rebus Lock
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f1211cbfb5b6d46d59fa1f6e7358d273, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1211cbfb5b6d46d59fa1f6e7358d273, type: 3}
 --- !u!1 &42973016
@@ -3838,6 +3842,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Anagram Lock
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f1211cbfb5b6d46d59fa1f6e7358d273, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1211cbfb5b6d46d59fa1f6e7358d273, type: 3}
 --- !u!1 &1104170351 stripped
@@ -4046,6 +4054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 747385e40758ae845a7588abb6d0cf85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: _LEVEL2_
 --- !u!114 &1207373756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4092,7 +4101,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1207373755}
         m_TargetAssemblyTypeName: Play, Assembly-CSharp
-        m_MethodName: PlayGame
+        m_MethodName: PlayLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

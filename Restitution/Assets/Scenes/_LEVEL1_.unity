@@ -2645,6 +2645,10 @@ PrefabInstance:
       value: Tutorial Guard
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 508f19dcc4d588246820ded1db4cbdd2, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 508f19dcc4d588246820ded1db4cbdd2, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -4609,6 +4613,10 @@ PrefabInstance:
       propertyPath: ZoomOut
       value: 
       objectReference: {fileID: 1761644198}
+    - target: {fileID: 7492625421200344034, guid: 4ee2c342d622f874abff019002bdc34e, type: 3}
+      propertyPath: field of view
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 7726574760384933890, guid: 4ee2c342d622f874abff019002bdc34e, type: 3}
       propertyPath: m_Name
       value: David
@@ -5023,25 +5031,6 @@ Transform:
   m_Father: {fileID: 1150205198}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!1 &978832401 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4599618081812298881, guid: 9caefda77d9594d71ac6bfdd6e7c3a43, type: 3}
-  m_PrefabInstance: {fileID: 3680647709976658730}
-  m_PrefabAsset: {fileID: 0}
---- !u!136 &978832406
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 978832401}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.3
-  m_Height: 1.75
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.75, z: 0}
 --- !u!1 &988111415
 GameObject:
   m_ObjectHideFlags: 0
@@ -6332,6 +6321,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f1211cbfb5b6d46d59fa1f6e7358d273, type: 3}
       propertyPath: m_Name
       value: Lock
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f1211cbfb5b6d46d59fa1f6e7358d273, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1211cbfb5b6d46d59fa1f6e7358d273, type: 3}
@@ -8849,7 +8842,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1561406396}
         m_TargetAssemblyTypeName: Play, Assembly-CSharp
-        m_MethodName: PlayGame
+        m_MethodName: PlayLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8909,6 +8902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 747385e40758ae845a7588abb6d0cf85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: _LEVEL1_
 --- !u!1 &1563000069
 GameObject:
   m_ObjectHideFlags: 0

@@ -41,8 +41,8 @@ public class Guard : MonoBehaviour
     {
         if (!caught)
         {
-            Vector3 guardDirection = transform.forward;
-            Vector3 guardView = transform.position + new Vector3(0, 1.5f, 0);
+            Vector3 guardDirection = transform.forward; //which direction the guard is looking
+            Vector3 guardView = transform.position + new Vector3(0, 1.5f, 0); //raised because the guard's eyes are not on the floor
             davidCentroid = characterController.bounds.center;
             Vector3 direction_from_guard_to_david = davidCentroid - guardView;
             direction_from_guard_to_david.Normalize();
@@ -67,7 +67,7 @@ public class Guard : MonoBehaviour
     IEnumerator PatrolNextLocation()
     {
         index = (index + 1) % waypoints.Count;
-        yield return new WaitForSeconds(UnityEngine.Random.Range(1f, 5f));
+        yield return new WaitForSeconds(UnityEngine.Random.Range(2f, 6f));
         guardAgent.destination = waypoints[index].position;
         moving = true;
     }
