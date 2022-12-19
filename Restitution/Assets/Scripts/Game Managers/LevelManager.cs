@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour {
 
     public static LevelManager instance;
+    public GameObject replayButton;
     public GameObject player;
     public Image fade;
     public string nextLevel;

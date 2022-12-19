@@ -1719,6 +1719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd92bc64d61384292b071ee76787f689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  replayButton: {fileID: 1207373753}
   player: {fileID: 919132149202019635}
   fade: {fileID: 650451188}
   nextLevel: _LEVEL3_
@@ -4006,7 +4007,7 @@ GameObject:
   - component: {fileID: 1207373756}
   - component: {fileID: 1207373755}
   m_Layer: 5
-  m_Name: Play
+  m_Name: Replay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

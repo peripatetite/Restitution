@@ -4480,7 +4480,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd92bc64d61384292b071ee76787f689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  replayButton: {fileID: 1561406391}
+  player: {fileID: 909366546}
   fade: {fileID: 1061042752}
   nextLevel: _LEVEL2_
 --- !u!1001 &889171174
@@ -4604,12 +4605,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7492625420621385044, guid: 4ee2c342d622f874abff019002bdc34e, type: 3}
+      propertyPath: ZoomOut
+      value: 
+      objectReference: {fileID: 1761644198}
     - target: {fileID: 7726574760384933890, guid: 4ee2c342d622f874abff019002bdc34e, type: 3}
       propertyPath: m_Name
       value: David
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ee2c342d622f874abff019002bdc34e, type: 3}
+--- !u!1 &909366546 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7726574760384933890, guid: 4ee2c342d622f874abff019002bdc34e, type: 3}
+  m_PrefabInstance: {fileID: 909366545}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &916896378 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8330072636189156998, guid: 6e022ca16a6e74b7bafe4ba327a04095, type: 3}
@@ -8766,7 +8776,7 @@ GameObject:
   - component: {fileID: 1561406393}
   - component: {fileID: 1561406396}
   m_Layer: 5
-  m_Name: Play
+  m_Name: Replay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -7,8 +7,8 @@ using UnityEngine.AI;
 public class Guard : MonoBehaviour
 {
     public List<Transform> waypoints;
-    public GameObject replay;
 
+    private GameObject replay;
     private NavMeshAgent guardAgent;
     private Animator guardAnimator;
     private GameObject david;
@@ -25,6 +25,7 @@ public class Guard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        replay = LevelManager.instance.replayButton;
         guardAgent = GetComponent<NavMeshAgent>();
         guardAnimator = GetComponent<Animator>();
         david = GameObject.Find("David");
