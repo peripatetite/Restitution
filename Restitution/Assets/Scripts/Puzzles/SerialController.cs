@@ -9,6 +9,21 @@ public class SerialController : MonoBehaviour {
 	private QuirpManager quirpManager;
 	private List<SerialButton> serialButtons = new List<SerialButton>();
 	private int currentSerial;
+	private int[] serials;
+	private int buttonCount;
+
+	void Awake() {
+		serials = new int[serialLimit];
+		for (int i = 0; i < serialLimit; i++) {
+			serials[i] = i + 1;
+		}
+		for (int i = 0; i < serialLimit; i++) {
+			int temp = serials[i];
+			int toSwap = Random.Range(0, serialLimit);
+			serials[i] = serials[toSwap];
+			serials[toSwap] = temp;
+		}
+	}
 
 	void Start() {
 		quirpManager = GetComponent<QuirpManager>();
@@ -16,11 +31,14 @@ public class SerialController : MonoBehaviour {
 	}
 
 	public void AddButton(SerialButton button) {
+		if (buttonCount >= serialLimit) {
+			return;
+		}
 		serialButtons.Add(button);
+		button.serialNumber = serials[buttonCount++];
 	}
 
 	public bool ReceiveButtonPress(int serialNum) {
-		Debug.Log(serialNum + " should be " + currentSerial);
 		if (currentSerial == serialNum) {
 			if (currentSerial++ == serialLimit) {
 				quirpManager.AddQuirp("David: Great, that's all the buttons. Something is disabled.");
@@ -30,9 +48,13 @@ public class SerialController : MonoBehaviour {
 			}
 			return true;
 		} else {
-			currentSerial = 1;
-			quirpManager.AddQuirp("David: Everything has reset! I don't think I should press this button now.");
+			if (currentSerial == 1) {
+				quirpManager.AddQuirp("David: I don't think I should press this button first.");
+			} else {
+				quirpManager.AddQuirp("David: Everything has reset! I think I pressed the wrong button.");
+			}
 			ResetAllButtons();
+			currentSerial = 1;
 			return false;
 		}
 	}
