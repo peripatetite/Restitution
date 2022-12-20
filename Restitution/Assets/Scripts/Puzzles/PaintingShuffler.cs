@@ -21,47 +21,43 @@ public class PaintingShuffler : MonoBehaviour
 		}
 	}
 
-	void Start()
-    {
-		currentPosition = 0;
-    }
-
 	public void AddPainting(Painting painting)
-    {
+	{
 		paintings.Add(painting);
-		Transform plaquePosition = positions[currentPosition++];
-		painting.transform.position = plaquePosition.position;
-		painting.transform.Rotate(Mathf.Rad2Deg * plaquePosition.rotation.x, Mathf.Rad2Deg * plaquePosition.rotation.y, Mathf.Rad2Deg * plaquePosition.rotation.z);
+		Transform plaqueTransform = positions[currentPosition++];
+		painting.transform.position = plaqueTransform.position;
+		painting.transform.localEulerAngles = plaqueTransform.localEulerAngles;
 		Transform paintingTransform = positions[currentPosition % positions.Length];
 		painting.frame.transform.position = paintingTransform.position + new Vector3(0, 1, 0);
-		painting.frame.transform.Rotate(Mathf.Rad2Deg * paintingTransform.rotation.x, Mathf.Rad2Deg * paintingTransform.rotation.y, Mathf.Rad2Deg * paintingTransform.rotation.z);
+		painting.frame.transform.localEulerAngles = paintingTransform.localEulerAngles + new Vector3(0, 180, 0);
 	}
 
 	public void CheckPaintings()
-    {
+	{
 		foreach (Painting painting in paintings)
-        {
-			if (painting.transform.position.x != painting.frame.transform.position.x 
-				|| painting.transform.position.z != painting.frame.transform.position.z) {
+		{
+			if (painting.transform.position.x != painting.frame.transform.position.x
+				|| painting.transform.position.z != painting.frame.transform.position.z)
+			{
 				return;
-            }
-        }
+			}
+		}
 		StickAllPaintings();
 		TurnOffLasers();
-    }
+	}
 
 	private void StickAllPaintings()
-    {
+	{
 		foreach (Painting painting in paintings)
-        {
+		{
 			painting.SetInteractable(false);
-        }
+		}
 
 	}
 
 	private void TurnOffLasers()
-    {
+	{
 		//TODO: Turn off the last set of lasers
 		Debug.Log("Laser Turned Off");
-    }
+	}
 }
