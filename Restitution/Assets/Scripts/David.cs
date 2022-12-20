@@ -48,15 +48,15 @@ public class David : MonoBehaviour
     }
 
     void Step() {
-        davidAudio.PlayOneShot(walkingAudio, 0.1f);
+        davidAudio.PlayOneShot(walkingAudio, 1);
     }
 
     void crouchStep() {
-        davidAudio.PlayOneShot(walkingAudio, 0.05f);
+        davidAudio.PlayOneShot(walkingAudio, 1);
     }
 
     void runStep() {
-        davidAudio.PlayOneShot(walkingAudio, 0.2f);
+        davidAudio.PlayOneShot(walkingAudio, 1);
     }
 
     void LookAway() 
@@ -136,14 +136,14 @@ public class David : MonoBehaviour
                     davidAnimator.SetInteger("movement", 1);
                     velocity = Mathf.Min(velocity + 0.5f, walkingVelocity);
                 }
-            } else if (Input.GetKey(KeyCode.S))
+            } else if (Input.GetKey(KeyCode.S) && davidAnimator.GetInteger("movement") != 2)
             {
                 if (!zoomedout)
                     LookAway();
 
                 //Walk Backwards
                 davidAnimator.SetInteger("movement", 5);
-                velocity = Mathf.Max(velocity - 0.4f, -walkingVelocity + 0.3f);
+                velocity = velocity <= 0 ? Mathf.Max(velocity - 0.4f, -walkingVelocity + 0.3f) : 0;
             }
             else
             {
