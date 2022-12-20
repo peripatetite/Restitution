@@ -5,6 +5,7 @@ using UnityEngine;
 public class PaintingShuffler : MonoBehaviour
 {
 	public Transform[] positions = new Transform[8];
+	public Barriers barrier;
 
 	private QuirpManager quirpManager;
 	private GameObject[] frames = new GameObject[8];
@@ -89,7 +90,7 @@ public class PaintingShuffler : MonoBehaviour
 
 	private void TurnOffLasers()
 	{
-		//TODO: Turn off the last set of lasers
+		barrier.disabled1 = true;
 		Debug.Log("Laser Turned Off");
 	}
 }
