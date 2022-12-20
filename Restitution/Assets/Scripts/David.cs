@@ -5,23 +5,24 @@ using UnityEngine.UI;
 
 public class David : MonoBehaviour
 {
-    private Animator davidAnimator;
-    private CharacterController davidController;
-    private float regularFOV;
-    private Quaternion Camera_rot;
-    public AudioClip walkingAudio;
-    private AudioSource davidAudio;
-
     public float walkingVelocity;
     public float rotateSpeed;
     public Vector3 movementDirection;
     public Button ZoomOut;
     public bool allowZoom;
     public Camera playerCamera;
+    public GameObject frame;
     bool zoomedout;
 
     public bool caught;
     public bool frozen;
+
+    private Animator davidAnimator;
+    private CharacterController davidController;
+    private float regularFOV;
+    private Quaternion Camera_rot;
+    public AudioClip walkingAudio;
+    private AudioSource davidAudio;
 
     private float velocity;
     private bool triggered;
@@ -147,8 +148,8 @@ public class David : MonoBehaviour
             else
             {
                 //Idle
-                velocity = 0;
                 davidAnimator.SetInteger("movement", 0);
+                velocity = 0;
             }   
         }
 
