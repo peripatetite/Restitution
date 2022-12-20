@@ -17,7 +17,8 @@ public class LevelManager : MonoBehaviour {
 	}
 
     public void AdvanceLevel() {
-        player.GetComponent<David>().enabled = false;
+        if (player != null)
+            player.GetComponent<David>().enabled = false;
         fade.color = new Color(0, 0, 0, 0);
         fade.gameObject.SetActive(true);
         StartCoroutine(TransitionScene(fade));
@@ -25,10 +26,10 @@ public class LevelManager : MonoBehaviour {
 
     IEnumerator TransitionScene(Image mask) {
         Color c = mask.color;
-        for (float alpha = 0f; alpha <= 1f; alpha += 0.02f) {
+        for (float alpha = 0f; alpha <= 1f; alpha += 0.04f) {
             c.a = alpha;
             mask.color = c;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.01f);
 		}
         SceneManager.LoadScene(nextLevel);
 	}
