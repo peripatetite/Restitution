@@ -60,7 +60,7 @@ public class ClockLock : Interactable
 			passcode[i] = (int)(solution / Mathf.Pow(10, 3 - i));
 			solution %= (int)Mathf.Pow(10, 3 - i);
 		}
-		problem.text = "IV " + strOps[0] + " IX " + strOps[1] + " VI " + strOps[2] + " XV";
+		problem.text = "IV " + strOps[0] + " IX " + strOps[1] + " VII " + strOps[2] + " XII";
 	}
 
 	public void EnterNumber(int num)
