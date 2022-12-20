@@ -87,7 +87,7 @@ public class ClockLock : Interactable
 	{
 		PlayerStopInteract();
 		interactable = false;
-		Debug.Log("Paintings Unlocked");
+		LevelManager.instance.gameObject.GetComponent<PaintingShuffler>().UnstickAllPaintings();
 	}
 
 	private void ResetSlots()

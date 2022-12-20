@@ -19,10 +19,9 @@ public class ClockRandomizer : MonoBehaviour
 
         minuteHand = transform.Find("MinuteHand");
         hourHand = transform.Find("HourHand");
-        setTime();
     }
 
-    void setTime()
+    public void setTime()
     {
         hour = Mathf.FloorToInt(clockAngle / 30);
         

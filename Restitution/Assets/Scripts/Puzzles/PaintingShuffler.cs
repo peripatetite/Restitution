@@ -80,6 +80,14 @@ public class PaintingShuffler : MonoBehaviour
 		TurnOffLasers();
 	}
 
+	public void UnstickAllPaintings()
+    {
+		foreach (Plaque plaque in plaques)
+        {
+			plaque.SetInteractable(true);
+        }
+    }
+
 	private void StickAllPaintings()
 	{
 		foreach (Plaque plaque in plaques)

@@ -18,16 +18,18 @@ public class Plaque : Interactable
 		paintingShuffler.AddPainting(this);
 		davidScript = GameObject.Find("David").GetComponent<David>();
 		hasPainting = true;
+		SetInteractable(false);
 	}
 
 	protected override void PlayerBeginInteract()
 	{
 		base.PlayerBeginInteract();
 		if (hasPainting)
-        {
+		{
 			paintingShuffler.PickUpPainting(position);
-		} else
-        {
+		}
+		else
+		{
 			hasPainting = true;
 			paintingShuffler.PutDownPainting(davidScript.frame, position);
 			if (transform.position.x == frame.transform.position.x
