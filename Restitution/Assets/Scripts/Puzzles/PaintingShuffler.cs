@@ -28,7 +28,7 @@ public class PaintingShuffler : MonoBehaviour
 		painting.transform.position = plaqueTransform.position;
 		painting.transform.localEulerAngles = plaqueTransform.localEulerAngles;
 		Transform paintingTransform = positions[currentPosition % positions.Length];
-		painting.frame.transform.position = new Vector3(paintingTransform.position.x, paintingTransform.position.y + 1, paintingTransform.position.z);
+		painting.frame.transform.position = new Vector3(paintingTransform.position.x, painting.frame.transform.localPosition.y, paintingTransform.position.z);
 		painting.frame.transform.localEulerAngles = paintingTransform.localEulerAngles + new Vector3(0, 180, 0);
 	}
 
