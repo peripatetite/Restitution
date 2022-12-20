@@ -9,6 +9,7 @@ public class ClockLock : Interactable
 	public GameObject puzzle;
 	public TextMeshProUGUI[] inputs = new TextMeshProUGUI[4];
 	public GameObject[] clocks = new GameObject[4];
+	public TextMeshProUGUI problem;
 
 	private int[] curr_passcode = new int[4];
 	private int[] passcode = new int[4];
@@ -33,7 +34,34 @@ public class ClockLock : Interactable
 
 	private void CalculatePasscode()
 	{
-		
+		int[] clockInts = new int[4];
+		for (int i = 0; i < 4; i++)
+        {
+			clockInts[i] = clocks[i].GetComponent<ClockRandomizer>().clockInt;
+		}
+		int solution = clockInts[0];
+		int[] ops = new int[3];
+		string[] strOps = new string[3];
+		for (int i = 0; i < 3; i++) {
+			ops[i] = Random.Range(0, 2);
+			if (ops[i] == 0)
+            {
+				solution += clockInts[i + 1];
+				strOps[i] = "+";
+			} else
+            {
+				solution -= clockInts[i + 1];
+				strOps[i] = "-";
+            }
+		}
+
+		Debug.Log(solution);
+		for (int i = 0; i < 4; i++)
+        {
+			passcode[i] = (int)(solution / Mathf.Pow(10, 3 - i));
+			solution %= (int)Mathf.Pow(10, 3 - i);
+		}
+		problem.text = "IV " + strOps[0] + " IX " + strOps[1] + " VI " + strOps[2] + " XV";
 	}
 
 	public void EnterNumber(int num)
@@ -52,14 +80,14 @@ public class ClockLock : Interactable
 				return;
 			}
 		}
-		UnlockExit();
+		UnlockPaintings();
 	}
 
-	private void UnlockExit()
+	private void UnlockPaintings()
 	{
 		PlayerStopInteract();
 		interactable = false;
-		LevelManager.instance.AdvanceLevel();
+		Debug.Log("Paintings Unlocked");
 	}
 
 	private void ResetSlots()
