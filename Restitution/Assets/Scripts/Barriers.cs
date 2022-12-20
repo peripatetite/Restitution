@@ -27,8 +27,8 @@ public class Barriers : MonoBehaviour
                     beamRenderer.enabled = false;
                 }
             }
+            Barrier1.GetComponent<Collider>().enabled = false;
         }
 
-        Barrier1.GetComponent<Collider>().enabled = false;;
     }
 }
