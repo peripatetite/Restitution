@@ -1407,6 +1407,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  shout: {fileID: 8300000, guid: 95cf0e8e891fc428d9a3910689a0ed13, type: 3}
 --- !u!136 &8408615773955930320
 CapsuleCollider:
   m_ObjectHideFlags: 0

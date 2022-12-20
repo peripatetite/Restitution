@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class Guard : MonoBehaviour
 {
     public List<Transform> waypoints;
+    public AudioClip shout;
 
     private GameObject replay;
     private NavMeshAgent guardAgent;
@@ -16,6 +17,8 @@ public class Guard : MonoBehaviour
     private Vector3 davidCentroid;
     private David davidScript;
     private Action<bool> state;
+    
+    private AudioSource guardAudio;
 
     private int index = 1;
     private bool moving = true;
@@ -31,6 +34,7 @@ public class Guard : MonoBehaviour
         david = GameObject.Find("David");
         characterController = david.GetComponent<CharacterController>();
         davidScript = david.GetComponent<David>();
+        guardAudio = GetComponent<AudioSource>();
 
         state = Patrolling;
         guardAgent.destination = waypoints[index].position;
@@ -76,6 +80,7 @@ public class Guard : MonoBehaviour
     {
         if (spotted)
         {
+            guardAudio.PlayOneShot(shout, 0.7F);
             if (Vector3.Distance(transform.position, david.transform.position) < 1)
             {
                 StopCoroutine("PatrolNextLocation");
