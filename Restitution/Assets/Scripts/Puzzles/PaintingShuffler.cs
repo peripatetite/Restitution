@@ -29,11 +29,12 @@ public class PaintingShuffler : MonoBehaviour
 	public void AddPainting(Painting painting)
     {
 		paintings.Add(painting);
-		painting.transform.position = positions[currentPosition].position;
-		painting.transform.rotation = positions[currentPosition++].rotation;
+		Transform plaquePosition = positions[currentPosition++];
+		painting.transform.position = plaquePosition.position;
+		painting.transform.Rotate(Mathf.Rad2Deg * plaquePosition.rotation.x, Mathf.Rad2Deg * plaquePosition.rotation.y, Mathf.Rad2Deg * plaquePosition.rotation.z);
 		Transform paintingTransform = positions[currentPosition % positions.Length];
 		painting.frame.transform.position = paintingTransform.position + new Vector3(0, 1, 0);
-		painting.frame.transform.rotation = new Quaternion(paintingTransform.rotation.x, paintingTransform.rotation.y + 180, paintingTransform.rotation.z, 1);
+		painting.frame.transform.Rotate(Mathf.Rad2Deg * paintingTransform.rotation.x, Mathf.Rad2Deg * paintingTransform.rotation.y, Mathf.Rad2Deg * paintingTransform.rotation.z);
 	}
 
 	public void CheckPaintings()
