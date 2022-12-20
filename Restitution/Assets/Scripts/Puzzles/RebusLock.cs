@@ -13,7 +13,8 @@ public class RebusLock : Interactable
 
 	private QuirpManager quirpManager;
 	private string answer1 = "stolen";
-	private string answer2 = "artifacts";
+	private string answer2 = "artifact";
+	private string answer3 = "artifacts";
 	private int selected = 0;
 
 	protected override void Initialize()
@@ -62,7 +63,8 @@ public class RebusLock : Interactable
 	public void Guess()
     {
 		if (inputs[0].text.ToLower().Trim().Equals(answer1)
-			&& inputs[1].text.ToLower().Trim().Equals(answer2))
+			&& inputs[1].text.ToLower().Trim().Equals(answer2)
+			|| inputs[1].text.ToLower().Trim().Equals(answer3))
 		{
 			quirpManager.AddQuirp("Correct!");
 			TurnOnLights();
@@ -71,7 +73,8 @@ public class RebusLock : Interactable
 			inputs[0].gameObject.GetComponent<Image>().color = new Color32(0, 180, 0, 255);
 			inputs[1].text = "";
 			inputs[1].Select();
-		} else if (inputs[1].text.ToLower().Trim().Equals(answer2))
+		} else if (inputs[1].text.ToLower().Trim().Equals(answer2)
+			|| inputs[1].text.ToLower().Trim().Equals(answer3))
         {
 			inputs[1].gameObject.GetComponent<Image>().color = new Color32(0, 180, 0, 255);
 			inputs[0].text = "";
