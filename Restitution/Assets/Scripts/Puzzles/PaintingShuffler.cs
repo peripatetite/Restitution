@@ -8,7 +8,7 @@ public class PaintingShuffler : MonoBehaviour
 
 	private QuirpManager quirpManager;
 	private GameObject[] frames = new GameObject[8];
-	private List<Painting> paintings = new List<Painting>();
+	private List<Plaque> plaques = new List<Plaque>();
 	private int currentPosition;
 	private David davidScript;
 
@@ -28,45 +28,48 @@ public class PaintingShuffler : MonoBehaviour
 		davidScript = GameObject.Find("David").GetComponent<David>();
 	}
 
-	public void AddPainting(Painting painting)
+	public void AddPainting(Plaque plaque)
 	{
-		frames[currentPosition] = painting.frame;
-		paintings.Add(painting);
-		painting.position = currentPosition;
+		plaques.Add(plaque);
+		plaque.position = currentPosition;
 		Transform plaqueTransform = positions[currentPosition++];
-		painting.transform.position = plaqueTransform.position;
-		painting.transform.localEulerAngles = plaqueTransform.localEulerAngles;
+		frames[currentPosition % positions.Length] = plaque.frame;
+		plaque.transform.position = plaqueTransform.position;
+		plaque.transform.localEulerAngles = plaqueTransform.localEulerAngles;
 		Transform paintingTransform = positions[currentPosition % positions.Length];
-		painting.frame.transform.position = new Vector3(paintingTransform.position.x, painting.frame.transform.localPosition.y, paintingTransform.position.z);
-		painting.frame.transform.localEulerAngles = paintingTransform.localEulerAngles + new Vector3(0, 180, 0);
+		plaque.frame.transform.position = new Vector3(paintingTransform.position.x, plaque.frame.transform.localPosition.y, paintingTransform.position.z);
+		plaque.frame.transform.localEulerAngles = paintingTransform.localEulerAngles + new Vector3(0, 180, 0);
 	}
 
 	public void PickUpPainting(int position)
     {
+		GameObject frame = frames[position];
 		if (davidScript.frame != null)
         {
 			PutDownPainting(davidScript.frame, position);
+        } else
+        {
+			plaques[position].hasPainting = false;
         }
-		GameObject frame = frames[position];
 		davidScript.frame = frame;
-		Debug.Log(davidScript.frame.transform.position);
-		frames[position].transform.position = Vector3.zero; // Temporary placeholder
+		frame.SetActive(false);
     }
 
 	public void PutDownPainting(GameObject frame, int position)
     {
 		frame.SetActive(true);
-		Transform paintingTransform = frames[position].transform;
-		frame.transform.position = new Vector3(paintingTransform.position.x, frame.transform.localPosition.y, paintingTransform.position.z);
+		Transform paintingTransform = positions[position].transform;
+		frame.transform.position = new Vector3(paintingTransform.position.x, frame.transform.position.y, paintingTransform.position.z);
 		frame.transform.localEulerAngles = paintingTransform.localEulerAngles + new Vector3(0, 180, 0);
+		frames[position] = frame;
 	}
 
 	public void CheckPaintings()
 	{
-		foreach (Painting painting in paintings)
+		foreach (Plaque plaque in plaques)
 		{
-			if (painting.transform.position.x != painting.frame.transform.position.x
-				|| painting.transform.position.z != painting.frame.transform.position.z)
+			if (plaque.transform.position.x != plaque.frame.transform.position.x
+				|| plaque.transform.position.z != plaque.frame.transform.position.z)
 			{
 				return;
 			}
@@ -77,9 +80,9 @@ public class PaintingShuffler : MonoBehaviour
 
 	private void StickAllPaintings()
 	{
-		foreach (Painting painting in paintings)
+		foreach (Plaque plaque in plaques)
 		{
-			painting.SetInteractable(false);
+			plaque.SetInteractable(false);
 		}
 
 	}
