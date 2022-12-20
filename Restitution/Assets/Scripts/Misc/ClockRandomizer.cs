@@ -15,7 +15,8 @@ public class ClockRandomizer : MonoBehaviour
 
     void Start()
     {
-        clockAngle = Random.Range(0, 361);
+        minutes = Random.Range(0, 60);
+        hour = Random.Range(0, 13);
 
         minuteHand = transform.Find("MinuteHand");
         hourHand = transform.Find("HourHand");
@@ -23,12 +24,8 @@ public class ClockRandomizer : MonoBehaviour
 
     public void setTime()
     {
-        hour = Mathf.FloorToInt(clockAngle / 30);
-        
-        int minuteAngle = clockAngle % 30;
-        minutes = Mathf.FloorToInt(minuteAngle / 6) + (hour * 5);
-
         clockInt = hour * 100 + minutes;
+        Debug.Log(clockInt);
 
         minuteHand.localRotation = Quaternion.Euler(0, 6 * minutes, 0);
         hourHand.localRotation = Quaternion.Euler(0, 90 + (hour * 30) + (minutes * 0.5f), 0);
