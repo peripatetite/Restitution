@@ -7,8 +7,8 @@ using TMPro;
 public class ClockLock : Interactable
 {
 	public GameObject puzzle;
-	public Image[] slots = new Image[4];
 	public TextMeshProUGUI[] inputs = new TextMeshProUGUI[4];
+	public GameObject[] clocks = new GameObject[4];
 
 	private int[] curr_passcode = new int[4];
 	private int[] passcode = new int[4];
@@ -17,7 +17,7 @@ public class ClockLock : Interactable
 	protected override void Initialize()
 	{
 		base.Initialize();
-		GeneratePasscode();
+		CalculatePasscode();
 	}
 	protected override void PlayerBeginInteract()
 	{
@@ -31,16 +31,9 @@ public class ClockLock : Interactable
 		puzzle.SetActive(false);
 	}
 
-	private void GeneratePasscode()
+	private void CalculatePasscode()
 	{
-		List<int> nums = new List<int>();
-		for (int i = 0; i < 10; i++) { nums.Add(i); }
-		for (int i = 0; i < 4; i++)
-		{
-			int index = Random.Range(0, nums.Count);
-			passcode[i] = nums[index];
-			nums.RemoveAt(index);
-		}
+		
 	}
 
 	public void EnterNumber(int num)
