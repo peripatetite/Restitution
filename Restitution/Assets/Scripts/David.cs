@@ -5,23 +5,24 @@ using UnityEngine.UI;
 
 public class David : MonoBehaviour
 {
-    private Animator davidAnimator;
-    private CharacterController davidController;
-    private float regularFOV;
-    private Quaternion Camera_rot;
-    public AudioClip walkingAudio;
-    private AudioSource davidAudio;
-
     public float walkingVelocity;
     public float rotateSpeed;
     public Vector3 movementDirection;
     public Button ZoomOut;
     public bool allowZoom;
     public Camera playerCamera;
+    public GameObject frame;
     bool zoomedout;
 
     public bool caught;
     public bool frozen;
+
+    private Animator davidAnimator;
+    private CharacterController davidController;
+    private float regularFOV;
+    private Quaternion Camera_rot;
+    public AudioClip walkingAudio;
+    private AudioSource davidAudio;
 
     private float velocity;
     private bool triggered;
@@ -135,12 +136,20 @@ public class David : MonoBehaviour
                     davidAnimator.SetInteger("movement", 1);
                     velocity = Mathf.Min(velocity + 0.5f, walkingVelocity);
                 }
+            } else if (Input.GetKey(KeyCode.S))
+            {
+                if (!zoomedout)
+                    LookAway();
+
+                //Walk Backwards
+                davidAnimator.SetInteger("movement", 5);
+                velocity = Mathf.Max(velocity - 0.4f, -walkingVelocity + 0.3f);
             }
             else
             {
                 //Idle
-                velocity = 0;
                 davidAnimator.SetInteger("movement", 0);
+                velocity = 0;
             }   
         }
 
@@ -158,8 +167,9 @@ public class David : MonoBehaviour
                 LookAway();
             transform.Rotate(new Vector3(0, -1, 0) * rotateSpeed * Time.deltaTime, Space.Self);
         }
-        movementDirection = transform.position.y > 0 ? transform.forward - new Vector3(0, 5, 0) : transform.forward;
-        davidController.Move(movementDirection * velocity * Time.deltaTime);
+        movementDirection = transform.forward * velocity;
+        movementDirection = transform.position.y > 0 ? movementDirection - new Vector3(0, 5, 0) : movementDirection;
+        davidController.Move(movementDirection * Time.deltaTime);
 
         //After rotating and moving, see if the camera is in the wall and if so move it out of the wall
         Vector3 source = transform.position + new Vector3(0, playerCamera.transform.localPosition.y, 0);
