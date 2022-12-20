@@ -3047,14 +3047,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71e815581369b3c4796c053c580ac876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkingAudio: {fileID: 8300000, guid: 5c9bdbce37b06a24fa6ea793bcfd1907, type: 3}
   walkingVelocity: 1.8
-  rotateSpeed: 124
+  rotateSpeed: 132
   movementDirection: {x: 0, y: 0, z: 0}
   ZoomOut: {fileID: 0}
   allowZoom: 0
+  playerCamera: {fileID: 0}
+  frame: {fileID: 0}
   caught: 0
   frozen: 0
+  walkingAudio: {fileID: 8300000, guid: 5c9bdbce37b06a24fa6ea793bcfd1907, type: 3}
 --- !u!1 &7731980495316975004
 GameObject:
   m_ObjectHideFlags: 0

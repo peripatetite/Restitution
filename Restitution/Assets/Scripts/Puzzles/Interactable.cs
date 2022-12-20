@@ -52,7 +52,7 @@ public class Interactable : MonoBehaviour {
 	private void Update() {
 		if (inRange) {
 			keyIconScale_target = keyIconScale;
-			if (interactable && Input.GetKeyDown(keyCode)) {
+			if (interactable && !LevelManager.instance.paused && Input.GetKeyDown(keyCode)) {
 				if (interacting) {
 					if (EventSystem.current.currentSelectedGameObject == null ||
 						EventSystem.current.currentSelectedGameObject.GetComponent<TMP_InputField>() == null)
