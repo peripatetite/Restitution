@@ -17,10 +17,10 @@ public class SerialController : MonoBehaviour {
 		for (int i = 0; i < serialLimit; i++) {
 			serials[i] = i + 1;
 		}
-		for (int i = 0; i < serialLimit; i++) {
-			int temp = serials[i];
+		for (int i = 0; i < serialLimit * 2; i++) {
+			int temp = serials[i % serialLimit];
 			int toSwap = Random.Range(0, serialLimit);
-			serials[i] = serials[toSwap];
+			serials[i % serialLimit] = serials[toSwap];
 			serials[toSwap] = temp;
 		}
 	}
@@ -41,7 +41,7 @@ public class SerialController : MonoBehaviour {
 	public bool ReceiveButtonPress(int serialNum) {
 		if (currentSerial == serialNum) {
 			if (currentSerial++ == serialLimit) {
-				quirpManager.AddQuirp("David: Great, that's all the buttons. Something is disabled.");
+				quirpManager.AddQuirp("David: Great, that's all the buttons. Took me long enough....");
 				Unlock();
 			} else {
 				quirpManager.AddQuirp("David: Nice! This is the correct button.");
@@ -66,6 +66,6 @@ public class SerialController : MonoBehaviour {
 	}
 
 	private void Unlock() {
-		// TODO: Unlock laser
+		// TODO: Set Clocks
 	}
 }
