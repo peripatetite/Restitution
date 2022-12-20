@@ -5,6 +5,7 @@ using UnityEngine;
 public class SerialController : MonoBehaviour {
 
 	public int serialLimit = 4;
+	public GameObject[] clocks = new GameObject[4];
 
 	private QuirpManager quirpManager;
 	private List<SerialButton> serialButtons = new List<SerialButton>();
@@ -42,7 +43,7 @@ public class SerialController : MonoBehaviour {
 		if (currentSerial == serialNum) {
 			if (currentSerial++ == serialLimit) {
 				quirpManager.AddQuirp("David: Great, that's all the buttons. Took me long enough....");
-				Unlock();
+				SetClocks();
 			} else {
 				quirpManager.AddQuirp("David: Nice! This is the correct button.");
 			}
@@ -65,7 +66,10 @@ public class SerialController : MonoBehaviour {
 		}
 	}
 
-	private void Unlock() {
-		// TODO: Set Clocks
+	private void SetClocks() {
+		foreach (GameObject clock in clocks)
+        {
+			clock.GetComponent<ClockRandomizer>().setTime();
+        }
 	}
 }
