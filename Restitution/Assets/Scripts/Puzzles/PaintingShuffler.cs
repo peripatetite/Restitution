@@ -62,6 +62,7 @@ public class PaintingShuffler : MonoBehaviour
 		frame.transform.position = new Vector3(paintingTransform.position.x, frame.transform.position.y, paintingTransform.position.z);
 		frame.transform.localEulerAngles = paintingTransform.localEulerAngles + new Vector3(0, 180, 0);
 		frames[position] = frame;
+		davidScript.frame = null;
 	}
 
 	public void CheckPaintings()
