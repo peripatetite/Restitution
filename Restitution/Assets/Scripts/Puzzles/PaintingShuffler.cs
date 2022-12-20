@@ -50,7 +50,7 @@ public class PaintingShuffler : MonoBehaviour
 		GameObject frame = frames[position];
 		davidScript.frame = frame;
 		Debug.Log(davidScript.frame.transform.position);
-		frames[position].transform.position = ;
+		frames[position].transform.position = Vector3.zero; // Temporary placeholder
     }
 
 	public void PutDownPainting(GameObject frame, int position)

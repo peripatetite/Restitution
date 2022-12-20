@@ -167,8 +167,9 @@ public class David : MonoBehaviour
                 LookAway();
             transform.Rotate(new Vector3(0, -1, 0) * rotateSpeed * Time.deltaTime, Space.Self);
         }
-        movementDirection = transform.position.y > 0 ? transform.forward - new Vector3(0, 5, 0) : transform.forward;
-        davidController.Move(movementDirection * velocity * Time.deltaTime);
+        movementDirection = transform.forward * velocity;
+        movementDirection = transform.position.y > 0 ? movementDirection - new Vector3(0, 5, 0) : movementDirection;
+        davidController.Move(movementDirection * Time.deltaTime);
 
         //After rotating and moving, see if the camera is in the wall and if so move it out of the wall
         Vector3 source = transform.position + new Vector3(0, playerCamera.transform.localPosition.y, 0);
