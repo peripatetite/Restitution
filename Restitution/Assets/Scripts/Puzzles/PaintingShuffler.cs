@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PaintingShuffler : MonoBehaviour
 {
 	public Transform[] positions = new Transform[8];
 	public Barriers barrier;
 	public Artifact artifact;
+	public Image paintingDisplay;
+	public GameObject heldPainting;
 
 	private QuirpManager quirpManager;
 	private GameObject[] frames = new GameObject[8];
 	private List<Plaque> plaques = new List<Plaque>();
 	private int currentPosition;
-	private David davidScript;
 
 	void Awake()
 	{
@@ -23,11 +25,6 @@ public class PaintingShuffler : MonoBehaviour
 			positions[i % positions.Length] = positions[toSwap];
 			positions[toSwap] = temp;
 		}
-	}
-
-	void Start()
-    {
-		davidScript = GameObject.Find("David").GetComponent<David>();
 	}
 
 	public void AddPainting(Plaque plaque)
@@ -46,15 +43,17 @@ public class PaintingShuffler : MonoBehaviour
 	public void PickUpPainting(int position)
     {
 		GameObject frame = frames[position];
-		if (davidScript.frame != null)
+		if (heldPainting != null)
         {
-			PutDownPainting(davidScript.frame, position);
+			PutDownPainting(heldPainting, position);
         } else
         {
 			plaques[position].hasPainting = false;
         }
-		davidScript.frame = frame;
+		heldPainting = frame;
 		frame.SetActive(false);
+		paintingDisplay.gameObject.SetActive(true);
+		paintingDisplay.sprite = frame.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Image>().sprite;
     }
 
 	public void PutDownPainting(GameObject frame, int position)
@@ -64,7 +63,8 @@ public class PaintingShuffler : MonoBehaviour
 		frame.transform.position = new Vector3(paintingTransform.position.x, frame.transform.position.y, paintingTransform.position.z);
 		frame.transform.localEulerAngles = paintingTransform.localEulerAngles + new Vector3(0, 180, 0);
 		frames[position] = frame;
-		davidScript.frame = null;
+		heldPainting = null;
+		paintingDisplay.gameObject.SetActive(false);
 	}
 
 	public void CheckPaintings()

@@ -11,7 +11,6 @@ public class David : MonoBehaviour
     public Button ZoomOut;
     public bool allowZoom;
     public Camera playerCamera;
-    public GameObject frame;
     bool zoomedout;
 
     public bool caught;

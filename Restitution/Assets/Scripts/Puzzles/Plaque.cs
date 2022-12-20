@@ -18,7 +18,7 @@ public class Plaque : Interactable
 		paintingShuffler.AddPainting(this);
 		davidScript = GameObject.Find("David").GetComponent<David>();
 		hasPainting = true;
-		SetInteractable(false);
+		//SetInteractable(false);
 	}
 
 	protected override void PlayerBeginInteract()
@@ -31,7 +31,7 @@ public class Plaque : Interactable
 		else
 		{
 			hasPainting = true;
-			paintingShuffler.PutDownPainting(davidScript.frame, position);
+			paintingShuffler.PutDownPainting(paintingShuffler.heldPainting, position);
 			if (transform.position.x == frame.transform.position.x
 			&& transform.position.z == frame.transform.position.z)
 			{
