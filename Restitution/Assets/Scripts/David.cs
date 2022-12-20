@@ -135,6 +135,14 @@ public class David : MonoBehaviour
                     davidAnimator.SetInteger("movement", 1);
                     velocity = Mathf.Min(velocity + 0.5f, walkingVelocity);
                 }
+            } else if (Input.GetKey(KeyCode.S))
+            {
+                if (!zoomedout)
+                    LookAway();
+
+                //Walk Backwards
+                davidAnimator.SetInteger("movement", 5);
+                velocity = Mathf.Max(velocity - 0.4f, -walkingVelocity + 0.3f);
             }
             else
             {
