@@ -6,6 +6,7 @@ public class PaintingShuffler : MonoBehaviour
 {
 	public Transform[] positions = new Transform[8];
 	public Barriers barrier;
+	public Artifact artifact;
 
 	private QuirpManager quirpManager;
 	private GameObject[] frames = new GameObject[8];
@@ -100,6 +101,7 @@ public class PaintingShuffler : MonoBehaviour
 	private void TurnOffLasers()
 	{
 		barrier.disabled1 = true;
+		artifact.SetInteractable(true);
 		Debug.Log("Laser Turned Off");
 	}
 }
