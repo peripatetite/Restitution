@@ -18,7 +18,6 @@ public class ClockLock : Interactable
 	protected override void Initialize()
 	{
 		base.Initialize();
-		CalculatePasscode();
 	}
 	protected override void PlayerBeginInteract()
 	{
@@ -32,7 +31,7 @@ public class ClockLock : Interactable
 		puzzle.SetActive(false);
 	}
 
-	private void CalculatePasscode()
+	public void CalculatePasscode()
 	{
 		int[] clockInts = new int[4];
 		for (int i = 0; i < 4; i++)
@@ -54,7 +53,7 @@ public class ClockLock : Interactable
 				strOps[i] = "-";
             }
 		}
-
+		solution = Mathf.Abs(solution);
 		Debug.Log(solution);
 		for (int i = 0; i < 4; i++)
         {

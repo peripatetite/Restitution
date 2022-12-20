@@ -71,5 +71,6 @@ public class SerialController : MonoBehaviour {
         {
 			clock.GetComponent<ClockRandomizer>().setTime();
         }
+		GameObject.Find("Clock Lock").GetComponent<ClockLock>().CalculatePasscode();
 	}
 }
