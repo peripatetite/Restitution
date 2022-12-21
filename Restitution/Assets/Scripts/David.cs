@@ -89,6 +89,7 @@ public class David : MonoBehaviour
 
         if (frozen)
         {
+            davidAnimator.SetInteger("movement", 0);
             return;
         }
 

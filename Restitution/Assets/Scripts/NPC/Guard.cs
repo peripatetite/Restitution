@@ -71,7 +71,7 @@ public class Guard : MonoBehaviour
     IEnumerator PatrolNextLocation()
     {
         index = (index + 1) % waypoints.Count;
-        yield return new WaitForSeconds(UnityEngine.Random.Range(2f, 6f));
+        yield return new WaitForSeconds(UnityEngine.Random.Range(4f, 6f));
         guardAgent.destination = waypoints[index].position;
         moving = true;
     }
@@ -131,7 +131,7 @@ public class Guard : MonoBehaviour
                 guardAnimator.SetInteger("movement", 2);
                 //Set the guard's destination to the player's position
                 guardAgent.destination = davidCentroid;
-                guardAgent.speed = 3.5f;
+                guardAgent.speed = 3f;
             }
         }
         else
