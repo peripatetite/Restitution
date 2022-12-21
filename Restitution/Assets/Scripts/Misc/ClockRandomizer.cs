@@ -16,7 +16,7 @@ public class ClockRandomizer : MonoBehaviour
     void Start()
     {
         minutes = Random.Range(0, 60);
-        hour = Random.Range(0, 13);
+        hour = Random.Range(1, 13);
 
         minuteHand = transform.Find("MinuteHand");
         hourHand = transform.Find("HourHand");
