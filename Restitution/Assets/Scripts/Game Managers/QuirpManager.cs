@@ -10,11 +10,13 @@ public class QuirpManager : MonoBehaviour {
 
     private Queue<string> quirpQueue;
     private float quirpTimer;
+	private string previousQuirp;
 
     // Start is called before the first frame update
     void Start() {
         quirpQueue = new Queue<string>();
         quirpTimer = -1;
+		previousQuirp = "";
     }
 
     // Update is called once per frame
@@ -22,8 +24,10 @@ public class QuirpManager : MonoBehaviour {
         if (quirpTimer > 0) {
             quirpTimer -= Time.deltaTime;
         } else if (quirpQueue.Count > 0) {
-            quirpDisplay.text = quirpQueue.Dequeue();
-            quirpTimer = quirpDuration / Mathf.Max(1, quirpQueue.Count - 1);
+			string text = quirpQueue.Dequeue();
+            quirpDisplay.text = text;
+            quirpTimer = (text == previousQuirp) ? 0 : quirpDuration / Mathf.Max(1, quirpQueue.Count - 1);
+			previousQuirp = text;
 		} else {
             quirpDisplay.text = "";
 		}
