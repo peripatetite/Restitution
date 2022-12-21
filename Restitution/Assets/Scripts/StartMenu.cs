@@ -18,6 +18,5 @@ public class StartMenu : MonoBehaviour
     private void ProcessButtonInput() {
         var parameters = new LoadSceneParameters(LoadSceneMode.Single);
         SceneManager.LoadScene("_LEVEL1_", parameters);
-    
     }
 }
