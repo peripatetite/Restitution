@@ -86,6 +86,7 @@ public class ClockLock : Interactable
 	{
 		PlayerStopInteract();
 		interactable = false;
+		LevelManager.instance.GetComponent<QuirpManager>().AddQuirp("Anouncement: The paintings are loosened...");
 		LevelManager.instance.gameObject.GetComponent<PaintingShuffler>().UnstickAllPaintings();
 	}
 

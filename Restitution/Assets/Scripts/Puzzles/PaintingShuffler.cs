@@ -103,5 +103,6 @@ public class PaintingShuffler : MonoBehaviour
 	{
 		barrier.disabled1 = true;
 		artifact.SetInteractable(true);
+		quirpManager.AddQuirp("David: Finally! I can now access the artifact.");
 	}
 }

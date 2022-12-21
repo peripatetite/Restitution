@@ -43,6 +43,9 @@ public class SerialController : MonoBehaviour {
 		if (currentSerial == serialNum) {
 			if (currentSerial++ == serialLimit) {
 				quirpManager.AddQuirp("David: Great, that's all the buttons. Took me long enough....");
+				quirpManager.AddQuirp("Anouncement: Time is now flowing...");
+				quirpManager.AddQuirp("Guard: What was that?");
+				quirpManager.AddQuirp("Other Guard: Eh, probably the new security system.");
 				SetClocks();
 			} else {
 				quirpManager.AddQuirp("David: Nice! This is the correct button.");

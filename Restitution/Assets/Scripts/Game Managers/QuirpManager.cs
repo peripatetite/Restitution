@@ -6,7 +6,7 @@ using TMPro;
 public class QuirpManager : MonoBehaviour {
 
     public TextMeshProUGUI quirpDisplay;
-    public float quirpDuration = 5f;
+    public float quirpDuration = 3f;
 
     private Queue<string> quirpQueue;
     private float quirpTimer;
@@ -25,11 +25,14 @@ public class QuirpManager : MonoBehaviour {
             quirpTimer -= Time.deltaTime;
         } else if (quirpQueue.Count > 0) {
 			string text = quirpQueue.Dequeue();
-            quirpDisplay.text = text;
-            quirpTimer = (text == previousQuirp) ? 0 : quirpDuration / Mathf.Max(1, quirpQueue.Count - 1);
+            quirpTimer = (text == previousQuirp) ? 0 : quirpDuration / Mathf.Max(1, quirpQueue.Count-2);
+            if (quirpTimer > 0)
+			    quirpDisplay.text = text;
 			previousQuirp = text;
+            Debug.Log("Dequequed, " + quirpQueue.Count);
 		} else {
             quirpDisplay.text = "";
+            previousQuirp = "";
 		}
     }
 
