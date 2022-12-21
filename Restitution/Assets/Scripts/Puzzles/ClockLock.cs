@@ -56,7 +56,7 @@ public class ClockLock : Interactable
 		solution = Mathf.Abs(solution);
 		for (int i = 0; i < 4; i++)
         {
-			passcode[i] = (int)(solution / Mathf.Pow(10, 3 - i));
+			passcode[i] = (int)(solution / (int)Mathf.Pow(10, 3 - i));
 			solution %= (int)Mathf.Pow(10, 3 - i);
 		}
 		problem.text = "IV " + strOps[0] + " IX " + strOps[1] + " VII " + strOps[2] + " XIII";

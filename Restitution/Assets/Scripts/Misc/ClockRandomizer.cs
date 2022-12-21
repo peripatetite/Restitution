@@ -25,7 +25,6 @@ public class ClockRandomizer : MonoBehaviour
     public void setTime()
     {
         clockInt = hour * 100 + minutes;
-        Debug.Log(clockInt);
 
         minuteHand.localRotation = Quaternion.Euler(0, 6 * minutes, 0);
         hourHand.localRotation = Quaternion.Euler(0, 90 + (hour * 30) + (minutes * 0.5f), 0);

@@ -900,6 +900,7 @@ MonoBehaviour:
   returnToStartButton: {fileID: 0}
   nextLevel: 
   paused: 0
+  pausable: 0
 --- !u!4 &537989540
 Transform:
   m_ObjectHideFlags: 0
@@ -1994,7 +1995,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7bc94a698a87e294dad0c98114bc80f1, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 1
   Mute: 0

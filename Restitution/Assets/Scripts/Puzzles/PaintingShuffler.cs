@@ -27,6 +27,11 @@ public class PaintingShuffler : MonoBehaviour
 		}
 	}
 
+	void Start()
+    {
+		LevelManager.instance.GetComponent<QuirpManager>();
+    }
+
 	public void AddPainting(Plaque plaque)
 	{
 		plaques.Add(plaque);
@@ -103,6 +108,6 @@ public class PaintingShuffler : MonoBehaviour
 	{
 		barrier.disabled1 = true;
 		artifact.SetInteractable(true);
-		quirpManager.AddQuirp("David: Finally! I can now access the artifact.");
+		quirpManager.AddQuirp("David: It sounded like those laser beams just turned off");
 	}
 }

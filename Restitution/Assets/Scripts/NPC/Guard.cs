@@ -82,7 +82,10 @@ public class Guard : MonoBehaviour
     {
         if (spotted)
         {
-            guardAudio.PlayOneShot(shout, 0.7F);
+            if (davidScript.caught != true)
+            {
+                guardAudio.PlayOneShot(shout, 0.7F);
+            }
             if (Vector3.Distance(transform.position, david.transform.position) < 1)
             {
                 StopCoroutine("PatrolNextLocation");
