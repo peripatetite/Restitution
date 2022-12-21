@@ -29,7 +29,6 @@ public class QuirpManager : MonoBehaviour {
             if (quirpTimer > 0)
 			    quirpDisplay.text = text;
 			previousQuirp = text;
-            Debug.Log("Dequequed, " + quirpQueue.Count);
 		} else {
             quirpDisplay.text = "";
             previousQuirp = "";
