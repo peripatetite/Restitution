@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour {
     public GameObject player;
     public Image fade;
     public GameObject pauseText;
+    public GameObject returnToStartButton;
     public string nextLevel;
     public bool paused;
 
@@ -29,24 +30,35 @@ public class LevelManager : MonoBehaviour {
             paused = !paused;
             Time.timeScale = paused ? 0 : 1;
             pauseText.SetActive(paused);
+            returnToStartButton.SetActive(paused);
 		}
 	}
 
 	public void AdvanceLevel() {
         if (player != null)
             player.GetComponent<David>().enabled = false;
-        fade.color = new Color(0, 0, 0, 0);
-        fade.gameObject.SetActive(true);
-        StartCoroutine(TransitionScene(fade));
+        StartCoroutine(TransitionScene(fade, nextLevel));
 	}
 
-    IEnumerator TransitionScene(Image mask) {
-        Color c = mask.color;
+    public void GoToStart(string level) {
+		if (player != null)
+			player.GetComponent<David>().enabled = false;
+		StartCoroutine(TransitionScene(fade, "StartMenu"));
+	}
+
+    public void ExitGame() {
+        Application.Quit();
+	}
+
+    IEnumerator TransitionScene(Image mask, string scene) {
+		mask.color = new Color(0, 0, 0, 0);
+		mask.gameObject.SetActive(true);
+		Color c = mask.color;
         for (float alpha = 0f; alpha <= 1f; alpha += 0.04f) {
             c.a = alpha;
             mask.color = c;
             yield return new WaitForSeconds(0.01f);
 		}
-        SceneManager.LoadScene(nextLevel);
+        SceneManager.LoadScene(scene);
 	}
 }
