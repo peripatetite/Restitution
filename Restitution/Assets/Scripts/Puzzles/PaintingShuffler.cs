@@ -102,6 +102,5 @@ public class PaintingShuffler : MonoBehaviour
 	{
 		barrier.disabled1 = true;
 		artifact.SetInteractable(true);
-		Debug.Log("Laser Turned Off");
 	}
 }
