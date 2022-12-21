@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEditor.SearchService;
 
 public class LevelManager : MonoBehaviour {
 
@@ -31,6 +32,7 @@ public class LevelManager : MonoBehaviour {
             Time.timeScale = paused ? 0 : 1;
             pauseText.SetActive(paused);
             returnToStartButton.SetActive(paused);
+            david.frozen = paused;
 		}
 	}
 
@@ -40,13 +42,13 @@ public class LevelManager : MonoBehaviour {
         StartCoroutine(TransitionScene(fade, nextLevel));
 	}
 
-    public void GoToStart(string level) {
+    public void GoToStart() {
 		if (player != null)
 			player.GetComponent<David>().enabled = false;
-		StartCoroutine(TransitionScene(fade, "StartMenu"));
+		SceneManager.LoadScene("StartMenu");
 	}
 
-    public void ExitGame() {
+	public void ExitGame() {
         Application.Quit();
 	}
 
