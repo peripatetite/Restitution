@@ -54,7 +54,6 @@ public class ClockLock : Interactable
             }
 		}
 		solution = Mathf.Abs(solution);
-		Debug.Log(solution);
 		for (int i = 0; i < 4; i++)
         {
 			passcode[i] = (int)(solution / Mathf.Pow(10, 3 - i));

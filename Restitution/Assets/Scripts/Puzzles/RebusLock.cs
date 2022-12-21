@@ -63,8 +63,8 @@ public class RebusLock : Interactable
 	public void Guess()
     {
 		if (inputs[0].text.ToLower().Trim().Equals(answer1)
-			&& inputs[1].text.ToLower().Trim().Equals(answer2)
-			|| inputs[1].text.ToLower().Trim().Equals(answer3))
+			&& (inputs[1].text.ToLower().Trim().Equals(answer2)
+			|| inputs[1].text.ToLower().Trim().Equals(answer3)))
 		{
 			quirpManager.AddQuirp("Correct!");
 			TurnOnLights();
