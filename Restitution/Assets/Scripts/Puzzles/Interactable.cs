@@ -26,6 +26,7 @@ public class Interactable : MonoBehaviour {
 	/// </summary>
 	protected virtual void PlayerBeginInteract() { 
 		interacting = true;
+		LevelManager.instance.pausable = false;
 		playerScript.frozen = true;
 	}
 	/// <summary>
@@ -37,6 +38,7 @@ public class Interactable : MonoBehaviour {
 	/// </summary>
 	protected virtual void PlayerStopInteract() { 
 		interacting = false;
+		LevelManager.instance.pausable = true;
 		playerScript.frozen = false;
 	}
 

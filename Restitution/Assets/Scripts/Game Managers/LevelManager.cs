@@ -14,6 +14,7 @@ public class LevelManager : MonoBehaviour {
     public GameObject returnToStartButton;
     public string nextLevel;
     public bool paused;
+    public bool pausable;
 
     private David david;
 
@@ -26,7 +27,7 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	private void Update() {
-		if (david != null && !david.caught && Input.GetKeyDown(KeyCode.P)) {
+		if (david != null && !david.caught && pausable && Input.GetKeyDown(KeyCode.P)) {
             paused = !paused;
             Time.timeScale = paused ? 0 : 1;
             pauseText.SetActive(paused);
