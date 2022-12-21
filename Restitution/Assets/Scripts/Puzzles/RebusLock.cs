@@ -46,7 +46,12 @@ public class RebusLock : Interactable
 			selected = (selected + 1) % 2;
 			inputs[selected].Select();
         }
-    }
+
+		if (Input.GetKey(KeyCode.Return))
+		{
+			Guess();
+		}
+	}
 
 	//Turn on the lights for the next puzzle
 	private void TurnOnLights()

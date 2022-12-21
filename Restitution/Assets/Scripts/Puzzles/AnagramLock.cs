@@ -23,6 +23,14 @@ public class AnagramLock : Interactable
 		input.Select();
 	}
 
+	protected override void PlayerInteract()
+    {
+		if (Input.GetKey(KeyCode.Return))
+        {
+			Guess();
+        }
+    }
+
 	protected override void PlayerStopInteract()
 	{
 		base.PlayerStopInteract();
@@ -39,6 +47,7 @@ public class AnagramLock : Interactable
 		} else
         {
 			input.text = "";
+			input.Select();
         }
 	}
 }

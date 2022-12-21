@@ -193,13 +193,13 @@ public class David : MonoBehaviour
                 {
                     Camera_rot = playerCamera.transform.rotation;
                     playerCamera.transform.LookAt(hit.point);
-                    playerCamera.fieldOfView = 10;
+                    playerCamera.fieldOfView = 15;
                     foreach(Renderer rend in GetComponentsInChildren<Renderer>(true))
                     {
                         rend.enabled = false;
                     }
                     ZoomOut.gameObject.SetActive(true);
-                    zoomedout = false; 
+                    zoomedout = false;
                 }
                 
                 davidController.enabled = true; 

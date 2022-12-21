@@ -44,7 +44,8 @@ public class LevelManager : MonoBehaviour {
     public void GoToStart() {
 		if (player != null)
 			player.GetComponent<David>().enabled = false;
-		SceneManager.LoadScene("StartMenu");
+        Time.timeScale = 1;
+        SceneManager.LoadScene("StartMenu");
 	}
 
 	public void ExitGame() {
