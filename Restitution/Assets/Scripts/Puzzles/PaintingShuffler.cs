@@ -29,7 +29,7 @@ public class PaintingShuffler : MonoBehaviour
 
 	void Start()
     {
-		LevelManager.instance.GetComponent<QuirpManager>();
+		quirpManager = LevelManager.instance.GetComponent<QuirpManager>();
     }
 
 	public void AddPainting(Plaque plaque)
