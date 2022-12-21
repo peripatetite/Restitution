@@ -54,6 +54,7 @@ public class PaintingShuffler : MonoBehaviour
 		frame.SetActive(false);
 		paintingDisplay.gameObject.SetActive(true);
 		paintingDisplay.sprite = frame.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Image>().sprite;
+		paintingDisplay.preserveAspect = true;
     }
 
 	public void PutDownPainting(GameObject frame, int position)

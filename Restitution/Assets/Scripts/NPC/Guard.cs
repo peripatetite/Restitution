@@ -10,6 +10,7 @@ public class Guard : MonoBehaviour
     public AudioClip shout;
 
     private GameObject replay;
+    private GameObject returnToMenu;
     private NavMeshAgent guardAgent;
     private Animator guardAnimator;
     private GameObject david;
@@ -29,6 +30,7 @@ public class Guard : MonoBehaviour
     void Start()
     {
         replay = LevelManager.instance.replayButton;
+        returnToMenu = LevelManager.instance.returnToStartButton;
         guardAgent = GetComponent<NavMeshAgent>();
         guardAnimator = GetComponent<Animator>();
         david = GameObject.Find("David");
@@ -145,6 +147,7 @@ public class Guard : MonoBehaviour
         davidScript.caught = true;
         guardAgent.destination = transform.position;
         replay.SetActive(true);
+        returnToMenu.SetActive(true);
         if (!guardAnimator.GetCurrentAnimatorStateInfo(0).IsName("Excited"))
         { 
             guardAnimator.SetTrigger("capture");
