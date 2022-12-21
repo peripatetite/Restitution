@@ -54,6 +54,7 @@ public class PaintingShuffler : MonoBehaviour
 		frame.SetActive(false);
 		paintingDisplay.gameObject.SetActive(true);
 		paintingDisplay.sprite = frame.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Image>().sprite;
+		paintingDisplay.preserveAspect = true;
     }
 
 	public void PutDownPainting(GameObject frame, int position)
@@ -103,6 +104,5 @@ public class PaintingShuffler : MonoBehaviour
 		barrier.disabled1 = true;
 		artifact.SetInteractable(true);
 		quirpManager.AddQuirp("David: Finally! I can now access the artifact.");
-		Debug.Log("Laser Turned Off");
 	}
 }
